@@ -73,15 +73,25 @@ and below it the name of the assignment with the nearest due date will be displa
 
 
 
+# Help Required
+
+- DataBase Server
+- DataBase
+- git API -> for file sharing
+- google calendar API
+
 # Time Line
 
 
 | App Part | Date |
 |:---|:---|
-| Code Readability | 2 |
-| Code organization (folder structure) | 1 |  
-| State Management            | 2 |
-| App Functionality           | 3 |
-| Unit Testing                | 1 |
-| Above and Beyond            | 1 |
-|Total| /10|
+| profile Page                | march 6 |
+| Groups Page                 | march 6 |  
+| Assignment Page             | march 6 |
+| DM Page                     | march 13 |
+| Home Page                   | march 13 |
+| implement calendar          | march 20 |
+| create DataBase             | march 27 |
+| implement git functionality | april 3 |
+| implement file sharing      | april 11 |
+|Finish Everything            | april 14 |
