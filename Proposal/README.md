@@ -5,8 +5,8 @@ In this assignment we will create an AssignMate app.
 
 # The App Outline
 
-the app will have global navigation accecible for each page or tap.
-the user will be able to use the global navigation to go to:
+The app will have global navigation accecible for each page or tap.
+The user will be able to use the global navigation to go to:
 (1) the Assignments page
 (2) Direct Massenging Page
 (3) Home Page
@@ -26,43 +26,43 @@ it will have items such as:
 
 **Groups Page**
 	
-in this page all the Groups the user is currently in will be visible.
-and by clicking on a group, the user will be taken to the chat Page where all members of the group can communicate with each other
-and share ideas and notes. the user will also be able to see the profiles of any member of the group by clicking on their picture.
+In this page, all the Groups the user is currently in will be visible.
+By clicking on a group, the user will be taken to the Chat Page where all members of the group can communicate with each other
+and share ideas and notes. The user will also be able to see the profiles of any member of the group by clicking on their picture.
 
 
 **Direct Massenging (DM) page**
 
-in this page, the user will be able to contact any of the other mates (app users).
+In this page, the user will be able to contact any of the other mates (app users).
 
 
 **Assignments Page**
 
-in this page, the names of the assignments the user is currently enrolled in will be displayed with their due dates.
-the assignments will be organized based on their due date.
+In this page, the names of the assignments the user is currently enrolled in will be displayed with their due dates.
+The assignments will be organized based on their due date.
 
-there will also be a button to show the previous assignments (the ones marked complete) with their grade if avaliable.
+There will also be a button to show the previous assignments (the ones marked complete) with their grade if avaliable.
 
-The user will also be able to create new assignments, by choosing to create a new assignment, the user will be directed to a page to enter
-the details of the assignment. Such as:
+The user will also be able to create new assignments by choosing to create a new assignment. The user will be directed to a page to enter
+the details of the assignment such as:
 (1) title
 (2) course
 (3) due date
 (4) outline
 
-furthermore, the use will also be able to manage their assignments reminders.
+Furthermore, the user will also be able to manage their assignments' reminders.
 
-by clicking on one of the assignments, the user will be directed to that specific assignment page. Where the assignment name, group members,
+By clicking on one of the assignments, the user will be directed to that specific assignment page, where the assignment name, group members,
 
-progress bar, outline and many mory information will be displayed.
+progress bar, outline and much more information will be displayed.
 
 **Home Page**
 
-This page will have the calnder showning the current month, with all the assignments due dates and reminders shown on it.
-the due date will be automatically be set after an assignment is created.
-and the calnder will also be interactive to allow the addition of reminders.
+This page will have the calendar showing the current month, with all the assignments due dates and reminders shown on it.
+The due date will be automatically be set after an assignment is created.
+and the calendar will also be interactive to allow the addition of reminders.
 
-on top of the calnder, there will be a section stating  the numbers of the asssignments that are in progress.
+On top of the calnder, there will be a section stating the numbers of the asssignments that are in progress,
 and below it the name of the assignment with the nearest due date will be displayed along with the due date.
 
 
