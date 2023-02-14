@@ -32,6 +32,7 @@ and share ideas and notes. the user will also be able to see the profiles of any
 
 
 **Direct Massenging (DM) page**
+
 in this page, the user will be able to contact any of the other mates (app users).
 
 
