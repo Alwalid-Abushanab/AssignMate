@@ -69,7 +69,6 @@ and below it the name of the assignment with the nearest due date will be displa
 
 # Mock-Ups
 
-![Demo Name](MockUps/fileName.ext) <- use the following format, put the picturs in the MochUps directory, and change the fileName to the appropiet file name, and change the Demo name too. and delete everything after (<-)
 ![m1](https://user-images.githubusercontent.com/61671055/218835376-ef58aeda-90f8-41d2-b54a-98b1b563ac45.jpg)
 ![m2](https://user-images.githubusercontent.com/61671055/218835396-5492c632-9a8a-46d5-8021-f4664b581551.jpg)
 ![m3](https://user-images.githubusercontent.com/61671055/218835404-abc01018-62dd-43ff-8a73-49b204e3d58b.jpg)
