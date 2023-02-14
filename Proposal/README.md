@@ -13,7 +13,9 @@ the user will be able to use the global navigation to go to:
 (4) Groups Page
 (5) Profile Page
 
+
 **Profile Page**
+
 the Profile page will be a standard profile page like the ones we are used to any most apps.
 it will have items such as:
 - name
@@ -21,13 +23,17 @@ it will have items such as:
 - picture
 - sittings
 
-**Groups Page**	
+
+**Groups Page**
+	
 in this page all the Groups the user is currently in will be visible.
 and by clicking on a group, the user will be taken to the chat Page where all members of the group can communicate with each other
 and share ideas and notes. the user will also be able to see the profiles of any member of the group by clicking on their picture.
 
+
 **Direct Massenging (DM) page**
 in this page, the user will be able to contact any of the other mates (app users).
+
 
 **Assignments Page**
 
@@ -46,9 +52,11 @@ the details of the assignment. Such as:
 furthermore, the use will also be able to manage their assignments reminders.
 
 by clicking on one of the assignments, the user will be directed to that specific assignment page. Where the assignment name, group members,
+
 progress bar, outline and many mory information will be displayed.
 
 **Home Page**
+
 This page will have the calnder showning the current month, with all the assignments due dates and reminders shown on it.
 the due date will be automatically be set after an assignment is created.
 and the calnder will also be interactive to allow the addition of reminders.
@@ -57,9 +65,11 @@ on top of the calnder, there will be a section stating  the numbers of the asssi
 and below it the name of the assignment with the nearest due date will be displayed along with the due date.
 
 
+
 # Mock-Ups
 
 ![Demo Name](MockUps/fileName.ext) <- use the following format, put the picturs in the MochUps directory, and change the fileName to the appropiet file name, and change the Demo name too. and delete everything after (<-)
+
 
 
 # Time Line
