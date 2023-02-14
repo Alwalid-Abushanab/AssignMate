@@ -53,6 +53,9 @@ This page will have the calnder showning the current month, with all the assignm
 the due date will be automatically be set after an assignment is created.
 and the calnder will also be interactive to allow the addition of reminders.
 
+on top of the calnder, there will be a section stating  the numbers of the asssignments that are in progress.
+and below it the name of the assignment with the nearest due date will be displayed along with the due date.
+
 
 # Mock-Ups
 
