@@ -85,13 +85,13 @@ and below it the name of the assignment with the nearest due date will be displa
 
 | App Part | Date |
 |:---|:---|
-| Profile page                | march 6  |
-| Groups page                 | march 6  |  
-| Assignment page             | march 6  | 
-| DM page                     | march 13 |
-| Homepage                    | march 13 |
-| Implement calendar          | march 20 |
-| Create database             | march 27 |
-| Implement git functionality | april 3  |
-| implement file sharing      | april 11 |
-| Finish Everything           | april 14 |
+| Profile page                | March 6  |
+| Groups page                 | March 6  |  
+| Assignment page             | March 6  | 
+| DM page                     | March 13 |
+| Homepage                    | March 13 |
+| Implement calendar          | March 20 |
+| Create database             | March 27 |
+| Implement git functionality | April 3  |
+| implement file sharing      | April 11 |
+| Finish Everything           | April 14 |
