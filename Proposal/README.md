@@ -1,14 +1,15 @@
 # CS3130 Group Project Proposal (AssignMate)
 
-
-In this assignment we will create an AssignMate app.
+Our proposed project will be called Assignmate. The goal of AssignMate is to help students get their work done ahead of time by assisting with
+organization, time management, and collaboration with their peers. With AssignMate, you'll be able to track assignment progress, set due dates and
+reminders, store and share files, and work with your peers all on the same app. 
 
 # The App Outline
 
 The app will have global navigation accecible for each page or tap.
 The user will be able to use the global navigation to go to:
-(1) the Assignments page
-(2) Direct Massenging Page
+(1) Assignments page
+(2) Direct Messaging Page
 (3) Home Page
 (4) Groups Page
 (5) Profile Page
@@ -31,7 +32,7 @@ By clicking on a group, the user will be taken to the Chat Page where all member
 and share ideas and notes. The user will also be able to see the profiles of any member of the group by clicking on their picture.
 
 
-**Direct Massenging (DM) page**
+**Direct Messaging (DM) page**
 
 In this page, the user will be able to contact any of the other mates (app users).
 
