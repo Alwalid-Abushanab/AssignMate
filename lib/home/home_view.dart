@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import '../routes/route_generator.dart';
+import '../bottomNavigation/navigation_bar_view.dart';
 
 /// Show the high score
 class HomeView extends StatelessWidget {
@@ -10,6 +11,7 @@ class HomeView extends StatelessWidget {
         centerTitle: true,
         title: const Text("AssignMate"),
       ),
+      bottomNavigationBar: NavigationBarView()
     );
   }
 }
