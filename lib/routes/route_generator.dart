@@ -1,3 +1,4 @@
+import 'package:assign_mate/assignments/assignments_page.dart';
 import 'package:assign_mate/routes/unknown_screen.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
@@ -20,7 +21,10 @@ class RouteGenerator {
         return MaterialPageRoute(
           builder: (_) => const HomePage(),
         );
-
+      case assignmentPage:
+        return MaterialPageRoute(
+          builder: (_) => const AssignmentsPage(),
+        );
     }
     if(kDebugMode) {
       return MaterialPageRoute(builder: (context) =>  UnknownScreen());
