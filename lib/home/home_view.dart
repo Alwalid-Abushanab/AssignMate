@@ -10,8 +10,9 @@ class HomeView extends StatelessWidget {
       appBar: AppBar(
         centerTitle: true,
         title: const Text("AssignMate"),
+        automaticallyImplyLeading: false,
       ),
-      bottomNavigationBar: NavigationBarView()
+      bottomNavigationBar: NavigationBarView(NavigationBarView.homeIndex)
     );
   }
 }
