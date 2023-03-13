@@ -3,24 +3,35 @@ import '../routes/route_generator.dart';
 
 /// Show the high score
 class NavigationBarView extends StatelessWidget {
+  static const int assignmentsIndex = 0;
+  static const int groupsIndex = 1;
+  static const int homeIndex = 2;
+  static const int DMIndex = 3;
+  static const int profileIndex = 4;
+
+  int indexSelected = 2;
+
+  NavigationBarView(int index){
+    indexSelected = index;
+  }
+
   @override
   Widget build(BuildContext context) {
-    int indexSelected = 0;
 
     void onTap(int index){
-      if (index == 0){
+      if (index == assignmentsIndex){
         Navigator.pushNamed(context,RouteGenerator.assignmentPage);
       }
-      else if (index == 1){
+      else if (index == groupsIndex){
         Navigator.pushNamed(context,RouteGenerator.groupsPage);
       }
-      else if (index == 2){
+      else if (index == homeIndex){
         Navigator.pushNamed(context,RouteGenerator.homePage);
       }
-      else if (index == 3){
+      else if (index == DMIndex){
         Navigator.pushNamed(context,RouteGenerator.DMPage);
       }
-      else if (index == 4){
+      else if (index == profileIndex){
         Navigator.pushNamed(context,RouteGenerator.profilePage);
       }
       else {
