@@ -5,12 +5,10 @@ abstract class AssignmentsState {
   const AssignmentsState();
 }
 
-class currentAssignments extends AssignmentsState{
+class currentAssignments extends AssignmentsState {
   const currentAssignments();
 }
 
-class pastAssignments extends AssignmentsState{
+class pastAssignments extends AssignmentsState {
   const pastAssignments();
 }
-
-
