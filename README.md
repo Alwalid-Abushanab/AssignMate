@@ -1,5 +1,16 @@
-# AssignMate
+# assign_mate
 
-Our proposed project will be called Assignmate. The goal of AssignMate is to help students get their work done ahead of time by assisting with
-organization, time management, and collaboration with their peers. With AssignMate, you'll be able to track assignment progress, set due dates and
-reminders, store and share files, and work with your peers all on the same app. 
+A new Flutter project.
+
+## Getting Started
+
+This project is a starting point for a Flutter application.
+
+A few resources to get you started if this is your first Flutter project:
+
+- [Lab: Write your first Flutter app](https://docs.flutter.dev/get-started/codelab)
+- [Cookbook: Useful Flutter samples](https://docs.flutter.dev/cookbook)
+
+For help getting started with Flutter development, view the
+[online documentation](https://docs.flutter.dev/), which offers tutorials,
+samples, guidance on mobile development, and a full API reference.
