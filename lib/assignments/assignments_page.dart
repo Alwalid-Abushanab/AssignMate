@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-
 import 'assignments_view.dart';
 import 'cubit/assignments_cubit.dart';
 

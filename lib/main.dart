@@ -5,7 +5,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 
 void main() {
   //runApp(const StreakApp());
-  BlocOverrides.runZoned(() => runApp( AssignMateApp(),));
+  BlocOverrides.runZoned(() => runApp(
+        AssignMateApp(),
+      ));
 }
-
-

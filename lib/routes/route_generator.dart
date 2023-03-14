@@ -5,7 +5,6 @@ import 'package:flutter/material.dart';
 import '../home/home_page.dart';
 
 class RouteGenerator {
-
   static const String homePage = '/';
   static const String assignmentPage = '/assignmentPage';
   static const String DMPage = '/DMPage';
@@ -26,12 +25,10 @@ class RouteGenerator {
           builder: (_) => const AssignmentsPage(),
         );
     }
-    if(kDebugMode) {
-      return MaterialPageRoute(builder: (context) =>  UnknownScreen());
-    }
-    else {
+    if (kDebugMode) {
+      return MaterialPageRoute(builder: (context) => UnknownScreen());
+    } else {
       return MaterialPageRoute(builder: (context) => const HomePage());
     }
   }
-
 }
