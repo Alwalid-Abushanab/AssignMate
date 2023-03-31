@@ -1,7 +1,7 @@
 #!/bin/sh
 # This is a generated file; do not edit or check into version control.
-export "FLUTTER_ROOT=C:\Users\acer\Downloads\flutter_windows_3.3.10-stable\flutter"
-export "FLUTTER_APPLICATION_PATH=C:\Users\acer\Desktop\3130prac\assign_mate"
+export "FLUTTER_ROOT=C:\Users\acer\Downloads\flutter_windows_3.7.3-stable\flutter"
+export "FLUTTER_APPLICATION_PATH=C:\Users\acer\Desktop\cs3130\cs3130-2023-groupprojects-assignmate"
 export "COCOAPODS_PARALLEL_CODE_SIGN=true"
 export "FLUTTER_TARGET=lib\main.dart"
 export "FLUTTER_BUILD_DIR=build"
