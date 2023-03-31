@@ -1,4 +1,5 @@
 
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 
 class UnknownScreen extends StatelessWidget {
@@ -6,8 +7,13 @@ class UnknownScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(),
-      body: Center(
+      body: Column(
+        children: [
+          Center(
         child: Text('Oops something went wrong!'),
+      ),
+          ElevatedButton(onPressed: ()=>FirebaseAuth.instance.signOut(), child: Text("sign out"))
+        ]
       ),
     );
   }

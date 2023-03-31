@@ -4,7 +4,7 @@ import 'package:flutter/material.dart';
 /// A MaterialApp which sets the `home` to StreakPage.
 class AssignMateApp extends MaterialApp {
   AssignMateApp({Key? key}) : super(key: key,
-      initialRoute:  RouteGenerator.homePage,
+      initialRoute:  RouteGenerator.authPage,
       onGenerateRoute: RouteGenerator.generateRoute,
       theme: ThemeData(
           primarySwatch: Colors.red,
