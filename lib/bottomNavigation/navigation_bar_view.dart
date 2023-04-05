@@ -26,7 +26,7 @@ class NavigationBarView extends StatelessWidget {
       } else if (index == homeIndex) {
         Navigator.pushNamed(context, RouteGenerator.homePage);
       } else if (index == DMIndex) {
-        Navigator.pushNamed(context, RouteGenerator.DMPage);
+        Navigator.pushNamed(context, RouteGenerator.dmPage);
       } else if (index == profileIndex) {
         Navigator.pushNamed(context, RouteGenerator.profilePage);
       } else {

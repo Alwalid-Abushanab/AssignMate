@@ -1,4 +1,5 @@
 import 'package:assign_mate/assignments/assignments_page.dart';
+import 'package:assign_mate/dm/mate_profile/mate_profile_page.dart';
 import 'package:assign_mate/routes/unknown_screen.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
@@ -6,18 +7,24 @@ import '../auth/authentication_page.dart';
 import '../auth/login/login_page.dart';
 import '../auth/reset_password/reset_password_page.dart';
 import '../auth/sign_up/signup_page.dart';
+import '../dm/chat/chat_page.dart';
+import '../dm/dm_page.dart';
+import '../dm/info.dart';
 import '../home/home_page.dart';
 
 class RouteGenerator {
   static const String homePage = '/';
   static const String assignmentPage = '/assignmentPage';
-  static const String DMPage = '/DMPage';
+  static const String dmPage = '/DMPage';
   static const String groupsPage = '/groupsPage';
   static const String profilePage = '/profilePage';
   static const String loginPage = '/loginPage';
   static const String authPage = '/AuthenticationPage';
   static const String signUpPage = '/signUpPage';
   static const String passwordPage = '/resetPasswordPage';
+  static const String dmChatPage = '/dmChatPage';
+  static const String mateProfilePage = '/mateProfilePage';
+
 
   //private constructor
   RouteGenerator._();
@@ -47,6 +54,20 @@ class RouteGenerator {
       case passwordPage:
         return MaterialPageRoute(
           builder: (_) => const ResetPasswordPage(),
+        );
+      case dmPage:
+        return MaterialPageRoute(
+          builder: (_) => const DMPage(),
+        );
+      case dmChatPage:
+        Info info = settings.arguments as Info;
+        return MaterialPageRoute(
+          builder: (_) => ChatPage(info: info),
+        );
+      case mateProfilePage:
+        String username = settings.arguments as String;
+        return MaterialPageRoute(
+          builder: (_) => MateProfilePage(username: username),
         );
     }
     if (kDebugMode) {
