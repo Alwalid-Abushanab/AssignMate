@@ -1,3 +1,5 @@
+import 'package:assign_mate/database/database.dart';
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -11,6 +13,7 @@ class SignUpView extends StatelessWidget {
   SignUpView({super.key});
 
   final emailController = TextEditingController();
+  final usernameController = TextEditingController();
   final passwordController = TextEditingController();
   final confirmPasswordController = TextEditingController();
 
@@ -35,6 +38,15 @@ class SignUpView extends StatelessWidget {
               const Text("Please Fill the following fields to Sign Up",textScaleFactor: 1.5,),
 
               const SizedBox(height: 30,),
+
+              //Username Field
+              myTextField(
+                  controller: usernameController,
+                  hint: "Username",
+                  obscured: false
+              ),
+
+              const SizedBox(height: 15,),
 
               //Email Field
               myTextField(
@@ -68,7 +80,6 @@ class SignUpView extends StatelessWidget {
                 builder: (context, state) {
 
                   if(state is SignedUp){
-                    //BlocProvider.of<SignupCubit>(context).successful(false);
                     Navigator.pop(context);
                   }
                   return GestureDetector(
@@ -76,12 +87,40 @@ class SignUpView extends StatelessWidget {
                       BlocProvider.of<SignupCubit>(context).trySigningUp();
                       try {
                         if(passwordController.text == confirmPasswordController.text) {
-                          await FirebaseAuth.instance
-                              .createUserWithEmailAndPassword(
-                              email: emailController.text,
-                              password: passwordController.text
-                          );
-                          BlocProvider.of<SignupCubit>(context).successful(true);
+                          if (usernameController.text != ""){
+                            final usersCollection = FirebaseFirestore.instance.collection('users');
+                            final snapshot = await usersCollection.where('username', isEqualTo: usernameController.text).get();
+                            if (snapshot.docs.isNotEmpty) {
+                              BlocProvider.of<SignupCubit>(context).successful(
+                                  false);
+                              showDialog(context: context, builder: (context) {
+                                return const AlertDialog(
+                                  title: Text(
+                                      'Username already exists. Please choose a different username.'),
+                                );
+                              });
+                            }
+                            else {
+                              User? user = (await FirebaseAuth.instance
+                                  .createUserWithEmailAndPassword(
+                                  email: emailController.text,
+                                  password: passwordController.text
+                              )).user;
+
+                              if(user != null){
+                                await Database(userid: user.uid).addUser(usernameController.text, emailController.text);
+                              }
+                              BlocProvider.of<SignupCubit>(context).successful(true);
+                            }
+                          }
+                          else {
+                            BlocProvider.of<SignupCubit>(context).successful(false);
+                            showDialog(context: context, builder: (context){
+                              return const AlertDialog(
+                                title: Text('Please Enter a username'),
+                              );
+                            });
+                          }
                         }
                         else {
                           BlocProvider.of<SignupCubit>(context).successful(false);
@@ -94,9 +133,10 @@ class SignUpView extends StatelessWidget {
                       } on FirebaseAuthException catch(e) {
                         BlocProvider.of<SignupCubit>(context).successful(false);
                         showDialog(context: context, builder: (context){
-                          return const AlertDialog(
-                            title: Text('Incorrect Email Or Password'),
-                          );
+                          if (e.code.toString() == 'weak-password'){
+                            return const AlertDialog(title: Text("Password must be at least 6 characters"));
+                          }
+                          return AlertDialog(title: Text(e.code.toString()),);
                         });
                       }
                     },
