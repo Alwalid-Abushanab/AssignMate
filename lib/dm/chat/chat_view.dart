@@ -74,10 +74,16 @@ class ChatView extends StatelessWidget {
                     stream: chats,
                     builder: (context, AsyncSnapshot snapshot){
                       return snapshot.hasData ? ListView.builder(
+                          keyboardDismissBehavior: ScrollViewKeyboardDismissBehavior.onDrag,
                           controller: scrollController,
                           itemCount: snapshot.data.docs.length+1,
                           itemBuilder: (context, i){
                             if(i == snapshot.data.docs.length){
+                              scrollController.animateTo(
+                                  scrollController.position.maxScrollExtent,
+                                  duration: const Duration(milliseconds: 200),
+                                  curve: Curves.easeOut
+                              );
                               return Container(height: 10,);
                             }
                             return ChatTile(
@@ -110,7 +116,7 @@ class ChatView extends StatelessWidget {
                                 );
                               });
                             }
-                            else if(result.files.single.extension! != 'png' || result.files.single.extension! != 'jpg'){
+                            else if(result.files.single.extension! != 'png' && result.files.single.extension! != 'jpg'){
                               return showDialog(context: context, builder: (context){
                                 return const AlertDialog(
                                   title: Text('Invalid File type, You can only share pictures of type png or jpg'),
@@ -122,7 +128,14 @@ class ChatView extends StatelessWidget {
                                 file,
                                 result.files.single.name!,
                                 info.dmId,
-                                info.receiver == info.firstUser? info.firstUser: info.secondUser);
+                                info.receiver == info.firstUser? info.secondUser: info.firstUser
+                            );
+
+                            scrollController.animateTo(
+                                scrollController.position.maxScrollExtent,
+                                duration: const Duration(milliseconds: 200),
+                                curve: Curves.easeOut
+                            );
                           },
                           child: Container(
                             height: 25,
@@ -183,6 +196,31 @@ class ChatView extends StatelessWidget {
                               ),
                             ),
                           ),
+                        ),
+                        const SizedBox(width: 5,),
+                        GestureDetector(
+                          onTap: (){
+                            scrollController.animateTo(
+                                scrollController.position.maxScrollExtent,
+                                duration: const Duration(milliseconds: 300),
+                                curve: Curves.easeOut
+                            );
+                          },
+                          child: Container(
+                            height: 25,
+                            width: 25,
+                            decoration: BoxDecoration(
+                                borderRadius: BorderRadius.circular(60),
+                                color: Colors.red
+                            ),
+                            child: const Center(
+                              child: Icon(
+                                Icons.arrow_downward,
+                                color: Colors.white,
+                              ),
+                            ),
+                          ),
+
                         )
                       ],
                     ),
@@ -195,7 +233,7 @@ class ChatView extends StatelessWidget {
             return Text("Something went wrong");
           }
           },
-      )
+      ),
     );
   }
 }
