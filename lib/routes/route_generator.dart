@@ -1,5 +1,5 @@
 import 'package:assign_mate/assignments/assignments_page.dart';
-import 'package:assign_mate/dm/mate_profile/mate_profile_page.dart';
+import 'package:assign_mate/profile/profile_page.dart';
 import 'package:assign_mate/routes/unknown_screen.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
@@ -11,6 +11,7 @@ import '../dm/chat/chat_page.dart';
 import '../dm/dm_page.dart';
 import '../dm/info.dart';
 import '../home/home_page.dart';
+import '../profile/editing_profile_view.dart';
 
 class RouteGenerator {
   static const String homePage = '/';
@@ -23,7 +24,7 @@ class RouteGenerator {
   static const String signUpPage = '/signUpPage';
   static const String passwordPage = '/resetPasswordPage';
   static const String dmChatPage = '/dmChatPage';
-  static const String mateProfilePage = '/mateProfilePage';
+  static const String editProfilePage = '/profileEditingPage';
 
 
   //private constructor
@@ -64,10 +65,15 @@ class RouteGenerator {
         return MaterialPageRoute(
           builder: (_) => ChatPage(info: info),
         );
-      case mateProfilePage:
+      case profilePage:
         String username = settings.arguments as String;
         return MaterialPageRoute(
-          builder: (_) => MateProfilePage(username: username),
+          builder: (_) => ProfilePage(username: username),
+        );
+      case editProfilePage:
+        final data = settings.arguments as  Map<String, dynamic>;
+        return MaterialPageRoute(
+          builder: (_) => EditingProfileView(data: data),
         );
     }
     if (kDebugMode) {

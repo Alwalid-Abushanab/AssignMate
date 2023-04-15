@@ -1,3 +1,5 @@
+import 'package:assign_mate/database/database.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:google_nav_bar/google_nav_bar.dart';
 import '../routes/route_generator.dart';
@@ -18,7 +20,7 @@ class NavigationBarView extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    void onTap(int index) {
+    Future<void> onTap(int index) async {
       if (index == assignmentsIndex) {
         Navigator.pushNamed(context, RouteGenerator.assignmentPage);
       } else if (index == groupsIndex) {
@@ -28,7 +30,9 @@ class NavigationBarView extends StatelessWidget {
       } else if (index == DMIndex) {
         Navigator.pushNamed(context, RouteGenerator.dmPage);
       } else if (index == profileIndex) {
-        Navigator.pushNamed(context, RouteGenerator.profilePage);
+        final email  = FirebaseAuth.instance.currentUser!.email!;
+        final username = await Database().getUsernameFromEmail(email);
+        Navigator.pushNamed(context, RouteGenerator.profilePage, arguments: username);
       } else {
         Navigator.pushNamed(context, RouteGenerator.homePage);
       }

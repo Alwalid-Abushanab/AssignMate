@@ -25,7 +25,7 @@ class ChatView extends StatelessWidget {
       appBar: AppBar(
         centerTitle: true,
         title: GestureDetector(
-          onTap: () {Navigator.pushNamed(context, RouteGenerator.mateProfilePage, arguments: info.receiver);},
+          onTap: () {Navigator.pushNamed(context, RouteGenerator.profilePage, arguments: info.receiver);},
           child: Row(
             children: [
               CircleAvatar(

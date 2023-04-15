@@ -29,15 +29,22 @@ class Database {
     });
   }
 
-  Future<void> updateUserBio(String username, String bio) {
+  Future<void> updateUserBio(String bio) async {
+    String username = await getUsernameFromEmail(FirebaseAuth.instance.currentUser!.email!);
     return usersRef.doc(username).update({
       'bio': bio,
     });
   }
 
-  Future<void> updateUserPic(String username, String profilePicUrl) {
+  Future<void> updateUserPic(File profilePic) async {
+    String username = await getUsernameFromEmail(FirebaseAuth.instance.currentUser!.email!);
+    Reference ref = FirebaseStorage.instance.ref().child('profilePic/$username/');
+    UploadTask uploadTask = ref.putFile(profilePic);
+    TaskSnapshot taskSnapshot = await uploadTask;
+    String downloadUrl = await taskSnapshot.ref.getDownloadURL();
+
     return usersRef.doc(username).update({
-      'profilePicUrl': profilePicUrl,
+      'profilePicUrl': downloadUrl,
     });
   }
 
@@ -125,6 +132,7 @@ class Database {
     final snapshot = await usersRef.where('username', isEqualTo: username).get();
     if (snapshot.docs.isNotEmpty) {
       return {
+        'username': username,
         'email': snapshot.docs.first.get('email'),
         'profilePicUrl': snapshot.docs.first.get('profilePicUrl'),
         'bio': snapshot.docs.first.get('bio'),
