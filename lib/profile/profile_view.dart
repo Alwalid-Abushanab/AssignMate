@@ -54,7 +54,7 @@ class ProfileView extends StatelessWidget {
               body: Center(
                 child: ListView(
                   children: [
-                    SizedBox(height: 15,),
+                    const SizedBox(height: 15,),
                     CircleAvatar(
                       radius: 100,
                       child: data['profilePicUrl'] == "" ?
@@ -80,7 +80,7 @@ class ProfileView extends StatelessWidget {
                     Text(username, textScaleFactor: 3,
                       textAlign: TextAlign.center,),
                     const SizedBox(height: 15,),
-                    Text(data['email'], textScaleFactor: 3,
+                    Text(data['email'], textScaleFactor: 1.5,
                       textAlign: TextAlign.center,),
                     const SizedBox(height: 15,),
                     user == username ? Container(
@@ -147,7 +147,7 @@ class ProfileView extends StatelessWidget {
                 title: const Text("Mate's Profile"),
                 automaticallyImplyLeading: false,
               ),
-              body: Text("Something went Wrong"),
+              body: const Text("Something went Wrong"),
               bottomNavigationBar: NavigationBarView(
                   NavigationBarView.profileIndex),
             );

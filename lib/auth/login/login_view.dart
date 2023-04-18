@@ -1,11 +1,11 @@
-import 'package:google_sign_in/google_sign_in.dart';
+import 'package:flutter/foundation.dart';
 
 import '../../routes/route_generator.dart';
+import '../google/google_signin.dart';
 import 'cubit/login_cubit.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:flutter_signin_button/flutter_signin_button.dart';
 
 class LoginView extends StatelessWidget {
   LoginView({super.key});
@@ -76,8 +76,8 @@ class LoginView extends StatelessWidget {
                 BlocBuilder<LoginCubit, LoginState>(
                   builder: (context, state) {
                     return GestureDetector(
-                      onTap: state is LoginingIn ? null : () async {
-                        BlocProvider.of<LoginCubit>(context).tryLoginingIn();
+                      onTap: state is LoggingIn ? null : () async {
+                        BlocProvider.of<LoginCubit>(context).tryLoggingIn();
                         try {
                           await FirebaseAuth.instance.signInWithEmailAndPassword(
                               email: emailController.text,
@@ -85,6 +85,9 @@ class LoginView extends StatelessWidget {
                           );
                           BlocProvider.of<LoginCubit>(context).successful(true);
                         } on FirebaseAuthException catch(e) {
+                          if(kDebugMode){
+                            print(e);
+                          }
                           BlocProvider.of<LoginCubit>(context).successful(false);
                           showDialog(context: context, builder: (context){
                             return const AlertDialog(
@@ -100,7 +103,7 @@ class LoginView extends StatelessWidget {
                             color: Colors.red,
                             borderRadius: BorderRadius.circular(10)
                         ),
-                        child: state is! LoginingIn ? const Center(
+                        child: state is! LoggingIn ? const Center(
                           child: Text("Sign in",
                             textScaleFactor: 1.5,
                             style: TextStyle(
@@ -118,24 +121,7 @@ class LoginView extends StatelessWidget {
                 const SizedBox(height: 50,),
 
                 //google login
-                Row(
-                  mainAxisAlignment: MainAxisAlignment.center,
-                  children: [
-                    SignInButton(
-                      Buttons.GoogleDark,
-                      onPressed: () async {
-                        final GoogleSignInAccount? gUser = await GoogleSignIn().signIn();
-                        final GoogleSignInAuthentication gAuth = await gUser!.authentication;
-                        final credential = GoogleAuthProvider.credential(
-                          accessToken: gAuth.accessToken,
-                          idToken: gAuth.idToken,
-                        );
-
-                        await FirebaseAuth.instance.signInWithCredential(credential);
-                      },
-                    )
-                  ],
-                ),
+                GoogleSignInButton().buildGoogleSignInButton(context),
 
                 const SizedBox(height: 50,),
 

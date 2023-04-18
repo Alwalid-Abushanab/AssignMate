@@ -4,7 +4,7 @@ import 'package:flutter/material.dart';
 import 'package:google_nav_bar/google_nav_bar.dart';
 import '../routes/route_generator.dart';
 
-/// Show the high score
+
 class NavigationBarView extends StatelessWidget {
   static const int assignmentsIndex = 0;
   static const int groupsIndex = 1;

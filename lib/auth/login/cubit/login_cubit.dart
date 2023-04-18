@@ -1,5 +1,4 @@
 import 'package:bloc/bloc.dart';
-import 'package:firebase_auth/firebase_auth.dart';
 import 'package:meta/meta.dart';
 
 part 'login_state.dart';
@@ -8,13 +7,13 @@ class LoginCubit extends Cubit<LoginState> {
   LoginCubit() : super(LoginInitial());
 
 
-  void tryLoginingIn(){
-    emit(LoginingIn());
+  void tryLoggingIn(){
+    emit(LoggingIn());
   }
 
-  void successful(bool secc){
-    if (secc){
-      emit(LogedIn());
+  void successful(bool success){
+    if (success){
+      emit(LoggedIn());
     }
     else {
       emit(LoginInitial());
