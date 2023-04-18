@@ -10,8 +10,8 @@ class SignupCubit extends Cubit<SignupState> {
     emit(SigningUp());
   }
 
-  void successful(bool secc){
-    if (secc){
+  void successful(bool success){
+    if (success){
       emit(SignedUp());
     }
     else {

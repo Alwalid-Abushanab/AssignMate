@@ -1,10 +1,5 @@
-import 'package:google_sign_in/google_sign_in.dart';
-
-import '../../routes/route_generator.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:flutter_signin_button/flutter_signin_button.dart';
 
 class ResetPasswordView extends StatelessWidget {
   ResetPasswordView({super.key});

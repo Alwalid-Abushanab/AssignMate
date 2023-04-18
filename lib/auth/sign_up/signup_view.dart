@@ -1,13 +1,10 @@
 import 'package:assign_mate/database/database.dart';
-import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:flutter_signin_button/flutter_signin_button.dart';
-import 'package:google_sign_in/google_sign_in.dart';
-
 import '../../routes/route_generator.dart';
 import 'cubit/signup_cubit.dart';
+import '../google/google_signin.dart';
 
 class SignUpView extends StatelessWidget {
   SignUpView({super.key});
@@ -88,11 +85,9 @@ class SignUpView extends StatelessWidget {
                       try {
                         if(passwordController.text == confirmPasswordController.text) {
                           if (usernameController.text != ""){
-                            final usersCollection = FirebaseFirestore.instance.collection('users');
-                            final snapshot = await usersCollection.where('username', isEqualTo: usernameController.text).get();
+                            final snapshot = await Database().getUserData(usernameController.text);
                             if (snapshot.docs.isNotEmpty) {
-                              BlocProvider.of<SignupCubit>(context).successful(
-                                  false);
+                              BlocProvider.of<SignupCubit>(context).successful(false);
                               showDialog(context: context, builder: (context) {
                                 return const AlertDialog(
                                   title: Text(
@@ -165,24 +160,9 @@ class SignUpView extends StatelessWidget {
               const SizedBox(height: 50,),
 
               //google login
-              Row(
-                mainAxisAlignment: MainAxisAlignment.center,
-                children: [
-                  SignInButton(
-                    Buttons.GoogleDark,
-                    onPressed: () async {
-                      final GoogleSignInAccount? gUser = await GoogleSignIn().signIn();
-                      final GoogleSignInAuthentication gAuth = await gUser!.authentication;
-                      final credential = GoogleAuthProvider.credential(
-                        accessToken: gAuth.accessToken,
-                        idToken: gAuth.idToken,
-                      );
+              GoogleSignInButton().buildGoogleSignInButton(context),
 
-                      await FirebaseAuth.instance.signInWithCredential(credential);
-                    },
-                  )
-                ],
-              ),
+
 
               const SizedBox(height: 50,),
 
