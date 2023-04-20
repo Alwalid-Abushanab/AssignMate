@@ -1,7 +1,4 @@
-import 'package:assign_mate/database/database.dart';
-import 'package:assign_mate/dm/chat/cubit/chat_cubit.dart';
-import 'package:assign_mate/dm/chat/tile/cubit/tile_cubit.dart';
-import 'package:firebase_auth/firebase_auth.dart';
+import 'package:assign_mate/dm/chat/tile/cubit/chat_tile_cubit.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -17,10 +14,10 @@ class ChatTile extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return BlocBuilder<TileCubit, TileState>(
+    return BlocBuilder<ChatTileCubit, ChatTileState>(
       builder: (context, state) {
-        if(state is TileInitial){
-          context.read<TileCubit>().getuser();
+        if(state is ChatTileInitial){
+          context.read<ChatTileCubit>().getuser();
           return const CircularProgressIndicator();
         }
         else if (state is UserLoading){

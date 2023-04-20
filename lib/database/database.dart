@@ -8,10 +8,16 @@ class Database {
   Database({this.userid});
 
   final CollectionReference usersRef =
-    FirebaseFirestore.instance.collection("users");
+  FirebaseFirestore.instance.collection("users");
 
   final CollectionReference DMsRef =
   FirebaseFirestore.instance.collection("DirectMessages");
+
+  final CollectionReference groupChatRef =
+  FirebaseFirestore.instance.collection("GroupChat");
+
+  final CollectionReference assignmentsRef =
+  FirebaseFirestore.instance.collection("Assignment");
 
   final FirebaseStorage storage = FirebaseStorage.instance;
   final Reference storageRef = FirebaseStorage.instance.ref();
@@ -53,7 +59,7 @@ class Database {
     return snapshot;
   }
 
-  getUserGroups(String email) async{
+  getUserMates(String email) async{
     final username = await getUsernameFromEmail(email);
     return usersRef.doc(username).snapshots();
   }
@@ -68,6 +74,8 @@ class Database {
   }
 
   Future createDM(String username) async{
+    String currUsername = await getUsernameFromEmail(FirebaseAuth.instance.currentUser!.email!);
+
     DocumentReference dm = await DMsRef.add({
       "DM_ID": "",
       "messageID": [],
@@ -76,24 +84,80 @@ class Database {
       'recentMessageTime': "",
     });
 
-    String currUsername = await getUsernameFromEmail(FirebaseAuth.instance.currentUser!.email!);
-
     await dm.update({
       "DM_ID": dm.id,
       'members': FieldValue.arrayUnion([currUsername, username])
     });
 
     await usersRef.doc(currUsername).update({
-      "DM": FieldValue.arrayUnion([dm.id])
+      "DM": FieldValue.arrayUnion([username])
     });
 
-    return await usersRef.doc(username).update({
-      "DM": FieldValue.arrayUnion([dm.id])
+    await usersRef.doc(username).update({
+      "DM": FieldValue.arrayUnion([currUsername])
     });
+  }
+
+  Future createAssignment(String title, String dueDate, String mainFile, List<String> otherFiles, List<String> members) async{
+    DocumentReference dr = await assignmentsRef.add({
+      "assignment_ID": "",
+      "group_ID": "",
+      "members": [],
+      "files": [],
+      "dueDate": dueDate,
+      "main pdf": mainFile,
+      "title": title,
+    });
+
+    String currUsername = await getUsernameFromEmail(FirebaseAuth.instance.currentUser!.email!);
+
+
+    String groupID = await createGroupChat(dr.id, [currUsername, ...members], title);
+
+    await dr.update({
+      "assignment_ID": dr.id,
+      "members": [currUsername, ...members],
+      "files": otherFiles,
+      'group_ID': groupID,
+    });
+
+    await usersRef.doc(currUsername).update({
+      "assignments": FieldValue.arrayUnion([dr.id]),
+      "assignmentsGroups": FieldValue.arrayUnion([groupID]),
+    });
+
+    for(int i = 0; i < members.length; i++){
+      await usersRef.doc(members[i]).update({
+        "assignments": FieldValue.arrayUnion([dr.id]),
+        "assignmentsGroups": FieldValue.arrayUnion([groupID]),
+      });
+    }
+  }
+
+  Future createGroupChat(String assignmentID, List<String> members, String title) async{
+    DocumentReference groupChat = await groupChatRef.add({
+      "group_ID": "",
+      "messageID": [],
+      'members': members,
+      'recentMessage': "",
+      'recentMessageTime': "",
+      'recentMessageSender': "",
+      'title': title,
+    });
+
+    groupChat.update({
+      "group_ID": groupChat.id,
+    });
+
+    return groupChat.id;
   }
 
   getDMchat(String id){
     return DMsRef.doc(id).snapshots();
+  }
+
+  getGroupInfo(String groupID){
+    return groupChatRef.doc(groupID).snapshots();
   }
 
   sendMessage(String dmID, Map<String,dynamic> message){
@@ -104,9 +168,28 @@ class Database {
     });
   }
 
+  sendGroupMessage(String groupID, Map<String,dynamic> message, String sender){
+    groupChatRef.doc(groupID).collection("messages").add(message);
+    groupChatRef.doc(groupID).update({
+      'recentMessage': message['message'],
+      'recentMessageTime': message['time'].toString(),
+      'recentMessageSender': sender,
+    });
+  }
+
+
+
   getChats(String dmId) async {
     return DMsRef
         .doc(dmId)
+        .collection("messages")
+        .orderBy("time")
+        .snapshots();
+  }
+
+  getGroupChats(String groupId) async{
+    return groupChatRef
+        .doc(groupId)
         .collection("messages")
         .orderBy("time")
         .snapshots();
@@ -126,6 +209,22 @@ class Database {
     };
 
     sendMessage(dmID,messageMap);
+  }
+
+  groupSendFile(File file, String name, String groupID, String sender) async {
+    Reference ref = FirebaseStorage.instance.ref().child('groupFiles/$groupID/${file.path.split('/').last}');
+    UploadTask uploadTask = ref.putFile(file);
+    TaskSnapshot taskSnapshot = await uploadTask;
+    String downloadUrl = await taskSnapshot.ref.getDownloadURL();
+
+    Map<String, dynamic> messageMap = {
+      'message': "",
+      'file': downloadUrl,
+      'sender': sender,
+      'time': DateTime.now().millisecondsSinceEpoch
+    };
+
+    sendGroupMessage(groupID,messageMap, sender);
   }
 
   Future<Map<String, dynamic>> getUserprofile(String username) async {
@@ -151,5 +250,10 @@ class Database {
     } else {
       return "";
     }
+  }
+
+  Future getPicFromUsername(String username) async{
+    final snapshot = await usersRef.where('username', isEqualTo: username).get();
+    return snapshot.docs.first.get('profilePicUrl');
   }
 }

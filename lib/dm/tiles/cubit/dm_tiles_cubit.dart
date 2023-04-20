@@ -4,17 +4,17 @@ import 'package:meta/meta.dart';
 
 import '../../../database/database.dart';
 
-part 'tiles_state.dart';
+part 'dm_tiles_state.dart';
 
-class TilesCubit extends Cubit<TilesState> {
-  TilesCubit() : super(TilesInitial());
+class DMTilesCubit extends Cubit<DMTilesState> {
+  DMTilesCubit() : super(DMTilesInitial());
 
   Future<void> getInfo(String id) async{
-    emit(TileLoading());
+    emit(DMTileLoading());
     final uid = FirebaseAuth.instance.currentUser?.uid;
     final snapshot = await Database(userid: uid).getDMchat(id);
     final username = await Database(userid: uid).getUsernameFromEmail(FirebaseAuth.instance.currentUser!.email!);
     final picUrl = await Database().getPicFromDMID(id,username);
-    emit(TileLoaded(snapshot: snapshot, currUsername: username, picUrl: picUrl));
+    emit(DMTileLoaded(snapshot: snapshot, currUsername: username, picUrl: picUrl));
   }
 }

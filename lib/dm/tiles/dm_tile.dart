@@ -1,6 +1,6 @@
 import 'package:assign_mate/database/database.dart';
 import 'package:assign_mate/dm/info.dart';
-import 'package:assign_mate/dm/tiles/cubit/tiles_cubit.dart';
+import 'package:assign_mate/dm/tiles/cubit/dm_tiles_cubit.dart';
 import 'package:assign_mate/routes/route_generator.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/cupertino.dart';
@@ -18,16 +18,16 @@ class DMTile extends StatelessWidget {
 
     String name = '';
 
-    return BlocBuilder<TilesCubit, TilesState>(
+    return BlocBuilder<DMTilesCubit, DMTilesState>(
         builder: (context, state) {
-          if (state is TilesInitial){
-            context.read<TilesCubit>().getInfo(id);
+          if (state is DMTilesInitial){
+            context.read<DMTilesCubit>().getInfo(id);
             return const CircularProgressIndicator();
           }
-          else if (state is TileLoading){
+          else if (state is DMTileLoading){
             return const CircularProgressIndicator();
           }
-          else if (state is TileLoaded){
+          else if (state is DMTileLoaded){
             final messengers = state.snapshot;
             final currUsername = state.currUsername;
             final picUrl = state.picUrl;

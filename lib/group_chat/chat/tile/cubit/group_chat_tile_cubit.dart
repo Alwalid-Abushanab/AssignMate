@@ -4,10 +4,10 @@ import 'package:meta/meta.dart';
 
 import '../../../../database/database.dart';
 
-part 'tile_state.dart';
+part 'group_chat_tile_state.dart';
 
-class TileCubit extends Cubit<TileState> {
-  TileCubit() : super(TileInitial());
+class GroupChatTileCubit extends Cubit<GroupChatTileState> {
+  GroupChatTileCubit() : super(GroupChatTileInitial());
 
   Future<void> getuser() async{
     emit(UserLoading());

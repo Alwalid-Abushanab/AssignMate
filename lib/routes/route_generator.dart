@@ -1,4 +1,8 @@
 import 'package:assign_mate/assignments/assignments_page.dart';
+import 'package:assign_mate/group_chat/chat/group_chat_page.dart';
+import 'package:assign_mate/group_chat/chat/group_info.dart';
+import 'package:assign_mate/group_chat/chat/profiles_list/profiles_list_page.dart';
+import 'package:assign_mate/group_chat/group_page.dart';
 import 'package:assign_mate/profile/profile_page.dart';
 import 'package:assign_mate/routes/unknown_screen.dart';
 import 'package:flutter/foundation.dart';
@@ -25,6 +29,8 @@ class RouteGenerator {
   static const String passwordPage = '/resetPasswordPage';
   static const String dmChatPage = '/dmChatPage';
   static const String editProfilePage = '/profileEditingPage';
+  static const String groupChatPage = '/groupChatPage';
+  static const String profileListPage = '/profileListPage';
 
 
   //private constructor
@@ -75,6 +81,21 @@ class RouteGenerator {
         return MaterialPageRoute(
           builder: (_) => EditingProfileView(data: data),
         );
+      case groupsPage:
+        return MaterialPageRoute(
+          builder: (_) => GroupPage(),
+        );
+      case groupChatPage:
+        GroupInfo info = settings.arguments as GroupInfo;
+        return MaterialPageRoute(
+          builder: (_) => GroupChatPage(info: info),
+        );
+      case profileListPage:
+        String groupID = settings.arguments as String;
+        return MaterialPageRoute(
+          builder: (_) => ProfilesListPage(groupID: groupID),
+        );
+
     }
     if (kDebugMode) {
       return MaterialPageRoute(builder: (context) => UnknownScreen());
