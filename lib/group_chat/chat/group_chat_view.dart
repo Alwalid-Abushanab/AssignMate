@@ -1,17 +1,19 @@
 import 'dart:io';
 import 'package:assign_mate/database/database.dart';
-import 'package:assign_mate/dm/chat/tile/chat_tile.dart';
-import 'package:assign_mate/dm/chat/cubit/chat_cubit.dart';
+import 'package:assign_mate/group_chat/chat/cubit/group_chat_cubit.dart';
+import 'package:assign_mate/group_chat/chat/tile/group_chat_tile.dart';
 import 'package:assign_mate/routes/route_generator.dart';
 import 'package:file_picker/file_picker.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import '../info.dart';
 
-class ChatView extends StatelessWidget {
-  final Info info;
-  const ChatView({super.key, required this.info});
+import 'group_info.dart';
+
+
+class GroupChatView extends StatelessWidget {
+  final GroupInfo info;
+  const GroupChatView({super.key, required this.info});
 
 
   @override
@@ -24,50 +26,35 @@ class ChatView extends StatelessWidget {
         title: GestureDetector(
           onTap: () {
             Navigator.pushNamed(
-                context,
-                RouteGenerator.profilePage,
-                arguments: info.receiver);
-            },
+              context,
+              RouteGenerator.profileListPage,
+              arguments: info.groupID,
+            );
+          },
           child: Row(
+            mainAxisAlignment: MainAxisAlignment.spaceAround,
             children: [
-              CircleAvatar(
-                radius: 25,
-                child: info.picUrl == '' ?
-                Container(
-                  width: 60,
-                  height: 60,
-                  decoration: const BoxDecoration(
-                    shape: BoxShape.circle,
-                    color: Colors.blueGrey,
-                  ),
-                  child: const Icon(Icons.account_circle_rounded, size: 45),
-                ):
-                ClipOval(
-                  child: Image.network(
-                    info.picUrl,
-                    fit: BoxFit.cover,
-                    width: 60,
-                    height: 60,
-                  ),
+              Expanded(
+                child: Text(
+                  info.title,
+                  textAlign: TextAlign.center,
                 ),
               ),
-              const SizedBox(width: 10,),
-              Text(info.receiver),
             ],
           ),
         ),
         automaticallyImplyLeading: true,
       ),
-      body: BlocBuilder<ChatCubit, ChatState>(
+      body: BlocBuilder<GroupChatCubit, GroupChatState>(
         builder: (context, state) {
-          if(state is ChatInitial){
-            context.read<ChatCubit>().getMessages(info.dmId);
+          if(state is GroupChatInitial){
+            context.read<GroupChatCubit>().getMessages(info.groupID);
             return const CircularProgressIndicator();
           }
-          else if(state is ChatLoading){
+          else if(state is GroupChatLoading){
             return const CircularProgressIndicator();
           }
-          else if (state is ChatLoaded){
+          else if (state is GroupChatLoaded){
             final chats = state.snapshot;
             return Column(
               children: [
@@ -90,10 +77,11 @@ class ChatView extends StatelessWidget {
                               }
                               return Container(height: 10,);
                             }
-                            return ChatTile(
+                            return GroupChatTile(
                               message: snapshot.data.docs[i]['message'],
                               sender: snapshot.data.docs[i]['sender'],
                               url: snapshot.data.docs[i]['file'],
+                              user: info.currUser,
                             );
                           }): const Center();
                     },
@@ -144,13 +132,12 @@ class ChatView extends StatelessWidget {
                                       TextButton(
                                         onPressed: () async {
                                           final file = File(result.files.single.path!);
-                                          Database().sendFile(
+                                          Database().groupSendFile(
                                               file,
                                               result.files.single.name,
-                                              info.dmId,
-                                              info.receiver == info.firstUser? info.secondUser: info.firstUser
+                                              info.groupID,
+                                              info.currUser
                                           );
-
                                           Navigator.pop(context);
 
                                           if (scrollController.position.hasContentDimensions) {
@@ -201,11 +188,11 @@ class ChatView extends StatelessWidget {
                               Map<String, dynamic> messageMap = {
                                 'message': controller.text,
                                 'file': "",
-                                'sender': info.receiver == info.firstUser? info.secondUser: info.firstUser,
+                                'sender': info.currUser,
                                 'time': DateTime.now().millisecondsSinceEpoch
                               };
 
-                              Database().sendMessage(info.dmId, messageMap);
+                              Database().sendGroupMessage(info.groupID, messageMap, info.currUser);
                               controller.clear();
                               if (scrollController.position.hasContentDimensions) {
                                 scrollController.animateTo(

@@ -16,7 +16,7 @@ class ProfilePage extends StatelessWidget {
           create: (context) => ProfileCubit(),
         ),
       ],
-      child: ProfileView(username: username,),
+      child: ProfileView(profileUsername: username,),
     );
   }
 }

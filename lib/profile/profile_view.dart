@@ -7,17 +7,19 @@ import '../routes/route_generator.dart';
 import 'cubit/profile_cubit.dart';
 
 class ProfileView extends StatelessWidget {
-  final String username;
+  final String profileUsername;
 
-  const ProfileView({super.key, required this.username});
+  const ProfileView({super.key, required this.profileUsername});
 
 
   @override
   Widget build(BuildContext context) {
+    String currentUserName = '';
+
     return BlocBuilder<ProfileCubit, ProfileState>(
         builder: (context, state) {
           if (state is ProfileInitial) {
-            context.read<ProfileCubit>().getUserData(username);
+            context.read<ProfileCubit>().getUserData(profileUsername);
             return Scaffold(
               appBar: AppBar(
                 centerTitle: true,
@@ -25,8 +27,6 @@ class ProfileView extends StatelessWidget {
                 automaticallyImplyLeading: false,
               ),
               body: const CircularProgressIndicator(),
-              bottomNavigationBar: NavigationBarView(
-                  NavigationBarView.profileIndex),
             );
           }
           else if (state is ProfileLoading) {
@@ -37,19 +37,17 @@ class ProfileView extends StatelessWidget {
                 automaticallyImplyLeading: false,
               ),
               body: const CircularProgressIndicator(),
-              bottomNavigationBar: NavigationBarView(
-                  NavigationBarView.profileIndex),
             );
           }
           else if (state is ProfileLoaded) {
             final data = state.data;
-            final user = state.currentUserName;
+            currentUserName = state.currentUserName;
 
             return Scaffold(
               appBar: AppBar(
                 centerTitle: true,
                 title: const Text("Mate's Profile"),
-                automaticallyImplyLeading: false,
+                automaticallyImplyLeading: currentUserName == profileUsername? false: true,
               ),
               body: Center(
                 child: ListView(
@@ -77,13 +75,13 @@ class ProfileView extends StatelessWidget {
                       ),
                     ),
                     const SizedBox(height: 30,),
-                    Text(username, textScaleFactor: 3,
+                    Text(profileUsername, textScaleFactor: 3,
                       textAlign: TextAlign.center,),
                     const SizedBox(height: 15,),
                     Text(data['email'], textScaleFactor: 1.5,
                       textAlign: TextAlign.center,),
                     const SizedBox(height: 15,),
-                    user == username ? Container(
+                    currentUserName == profileUsername ? Container(
                       color: Colors.grey[300],
                       height: 250,
                       child: SingleChildScrollView(
@@ -102,7 +100,7 @@ class ProfileView extends StatelessWidget {
                       textAlign: TextAlign.center,
                     ),
                     const SizedBox(height: 25,),
-                    user == username ? Row(
+                    currentUserName == profileUsername ? Row(
                       children: [
                         Padding(
                           padding: const EdgeInsets.only(left: 20, bottom: 10),
@@ -126,7 +124,7 @@ class ProfileView extends StatelessWidget {
                 ),
               ),
 
-              floatingActionButton: user == username ?
+              floatingActionButton: currentUserName == profileUsername ?
               FloatingActionButton(
                 onPressed: () {
                   Navigator.pushNamed(
@@ -136,8 +134,8 @@ class ProfileView extends StatelessWidget {
                 },
                 child: const Icon(Icons.edit),
               ) : const SizedBox.shrink(),
-              bottomNavigationBar: NavigationBarView(
-                  NavigationBarView.profileIndex),
+              bottomNavigationBar: currentUserName == profileUsername? NavigationBarView(
+                  NavigationBarView.profileIndex): const SizedBox.shrink(),
             );
           }
           else {

@@ -1,4 +1,4 @@
-import 'package:assign_mate/dm/chat/tile/cubit/tile_cubit.dart';
+import 'package:assign_mate/dm/chat/tile/cubit/chat_tile_cubit.dart';
 import 'package:assign_mate/dm/info.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -17,8 +17,8 @@ class ChatPage extends StatelessWidget {
         BlocProvider<ChatCubit>(
           create: (context) => ChatCubit(),
         ),
-        BlocProvider<TileCubit>(
-          create: (context) => TileCubit(),
+        BlocProvider<ChatTileCubit>(
+          create: (context) => ChatTileCubit(),
         ),
       ],
       child: ChatView(info: info,),

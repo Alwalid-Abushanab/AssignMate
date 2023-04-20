@@ -1,5 +1,4 @@
 import 'package:bloc/bloc.dart';
-import 'package:firebase_auth/firebase_auth.dart';
 import 'package:meta/meta.dart';
 
 import '../../../database/database.dart';
@@ -11,8 +10,7 @@ class ChatCubit extends Cubit<ChatState> {
 
   Future<void> getMessages(String dmId) async{
     emit(ChatLoading());
-    final uid = FirebaseAuth.instance.currentUser?.uid;
-    final snapshot = await Database(userid: uid).getChats(dmId);
+    final snapshot = await Database().getChats(dmId);
     emit(ChatLoaded(snapshot: snapshot));
   }
 }

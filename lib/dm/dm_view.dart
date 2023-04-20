@@ -1,5 +1,6 @@
 import 'package:assign_mate/database/database.dart';
 import 'package:assign_mate/dm/cubit/dm_cubit.dart';
+import 'package:assign_mate/dm/tiles/cubit/dm_tiles_cubit.dart';
 import 'package:assign_mate/dm/tiles/dm_tile.dart';
 import 'package:assign_mate/routes/route_generator.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
@@ -42,7 +43,14 @@ class DMView extends StatelessWidget {
                       return ListView.builder(
                         itemCount: snapshot.data['DM'].length,
                         itemBuilder: (context,i){
-                          return DMTile(id: snapshot.data['DM'][i],);
+                          return MultiBlocProvider(
+                            providers: [
+                              BlocProvider<DMTilesCubit>(
+                                create: (context) => DMTilesCubit(),
+                              ),
+                            ],
+                            child: DMTile(id: snapshot.data['DM'][i],),
+                          );
                         },
                       );
                     }
@@ -105,11 +113,9 @@ class DMView extends StatelessWidget {
                               );
                             }
                         );
-                        QuerySnapshot querySnapshot =
-                        await Database(userid: FirebaseAuth.instance.currentUser?.uid)
-                            .usersRef.where('username', isEqualTo: controller.text).get();
+                        QuerySnapshot querySnapshot = await Database().getUserData(controller.text);
                         if (querySnapshot.docs.isNotEmpty){
-                          await Database(userid: FirebaseAuth.instance.currentUser?.uid).createDM(controller.text);
+                          await Database().createDM(controller.text);
                           Navigator.of(context).pop();
                           Navigator.of(context).pop();
 
