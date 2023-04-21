@@ -2,13 +2,16 @@ import 'package:assign_mate/dm/chat/tile/cubit/chat_tile_cubit.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:full_screen_image/full_screen_image.dart';
+import 'package:intl/intl.dart';
 
 class ChatTile extends StatelessWidget {
   final String message;
   final String sender;
   final String url;
+  final String time;
 
-  const ChatTile({Key? key, required this.message, required this.sender, required this.url})
+  const ChatTile({Key? key, required this.message, required this.sender, required this.url, required this.time})
       : super(key: key);
 
 
@@ -52,8 +55,10 @@ class ChatTile extends StatelessWidget {
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
-                  Text(message, textAlign: TextAlign.center,),
-                  url == ''? SizedBox(): Image.network(url),
+                  SelectableText(message, textAlign: TextAlign.center,),
+                  url == ''? const SizedBox(): FullScreenWidget(disposeLevel: DisposeLevel.High, child: Image.network(url)),
+                  const SizedBox(height: 5,),
+                  Text(getTime(time), textAlign: TextAlign.right,style: const TextStyle(color: Colors.deepPurple),),
                 ],
               ),
             ),
@@ -64,5 +69,26 @@ class ChatTile extends StatelessWidget {
         }
       },
     );
+  }
+
+  String getTime(String timestampString){
+    if (timestampString == ''){
+      return '';
+    }
+    int timestamp = int.parse(timestampString);
+    DateTime now = DateTime.now();
+    DateTime date = DateTime.fromMillisecondsSinceEpoch(timestamp);
+    Duration diff = now.difference(date);
+
+    if (diff.inDays == 0) {
+      return DateFormat('h:mm a').format(date);
+    } else if(diff.inDays == 1){
+      return "yesterday ${DateFormat('h:mm a').format(date)}";
+    }else if (diff.inDays >= 365){
+      return DateFormat('yyyy/MM/dd h:mm a').format(date);
+    }
+    else{
+      return DateFormat('MM/dd h:mm a').format(date);
+    }
   }
 }

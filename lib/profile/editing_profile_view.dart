@@ -6,6 +6,7 @@ import 'package:file_picker/file_picker.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:full_screen_image/full_screen_image.dart';
 
 class EditingProfileView extends StatelessWidget {
   final  Map<String, dynamic> data;
@@ -28,7 +29,7 @@ class EditingProfileView extends StatelessWidget {
             builder: (BuildContext context) {
               return AlertDialog(
                 title: const Text('Are you sure?'),
-                content: const Text('Changes will be Discarded'),
+                content: const Text('Changes To your bio will be Discarded'),
                 actions: <Widget>[
                   TextButton(
                     onPressed: () => Navigator.of(context).pop(false),
@@ -50,21 +51,25 @@ class EditingProfileView extends StatelessWidget {
               const SizedBox(height: 15,),
               CircleAvatar(
                 radius: 100,
-                child: data['profilePicUrl'] == "" ?
-                Container(
-                  width: 200,
-                  height: 200,
-                  decoration: const BoxDecoration(
-                    shape: BoxShape.circle,
-                    color: Colors.blueGrey,
-                  ),
-                  child: const Icon(Icons.account_circle_rounded, size: 150),
-                ): ClipOval(
-                  child: Image.network(
-                    data['profilePicUrl'],
-                    fit: BoxFit.cover,
+                child: FullScreenWidget(
+                  disposeLevel: DisposeLevel.High,
+                  child: data['profilePicUrl'] == "" ?
+                  Container(
                     width: 200,
                     height: 200,
+                    decoration: const BoxDecoration(
+                      shape: BoxShape.circle,
+                      color: Colors.blueGrey,
+                    ),
+                    child: const Icon(
+                        Icons.account_circle_rounded, size: 150),
+                  ) : ClipOval(
+                    child: Image.network(
+                      data['profilePicUrl'],
+                      fit: BoxFit.cover,
+                      width: 200,
+                      height: 200,
+                    ),
                   ),
                 ),
               ),

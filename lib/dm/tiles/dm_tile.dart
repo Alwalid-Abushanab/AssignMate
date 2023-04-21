@@ -6,6 +6,7 @@ import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:full_screen_image/full_screen_image.dart';
 import 'package:intl/intl.dart';
 
 class DMTile extends StatelessWidget {
@@ -51,24 +52,27 @@ class DMTile extends StatelessWidget {
                         },
                         leading: CircleAvatar(
                           radius: 35,
-                          child: picUrl == '' ?
-                          Container(
-                            width: 60,
-                            height: 60,
-                            decoration: const BoxDecoration(
-                              shape: BoxShape.circle,
-                              color: Colors.blueGrey,
-                            ),
-                            child: const Icon(Icons.account_circle_rounded, size: 55),
-                          ):
-                          ClipOval(
-                            child: Image.network(
-                              picUrl,
-                              fit: BoxFit.cover,
+                          child: FullScreenWidget(
+                            disposeLevel: DisposeLevel.High,
+                            child: picUrl == '' ? 
+                            Container(
                               width: 60,
                               height: 60,
+                              decoration: const BoxDecoration(
+                                shape: BoxShape.circle,
+                                color: Colors.blueGrey,
+                              ),
+                              child: const Icon(Icons.account_circle_rounded, size: 55),
+                            ):
+                            ClipOval(
+                              child: Image.network(
+                                picUrl,
+                                fit: BoxFit.cover,
+                                width: 60,
+                                height: 60,
+                              ),
                             ),
-                          ),
+                          )
                         ),
                         title: Text(name),
                         subtitle: Text(
