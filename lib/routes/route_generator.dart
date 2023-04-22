@@ -5,6 +5,9 @@ import 'package:assign_mate/group_chat/chat/profiles_list/profiles_list_page.dar
 import 'package:assign_mate/group_chat/group_page.dart';
 import 'package:assign_mate/profile/profile_page.dart';
 import 'package:assign_mate/routes/unknown_screen.dart';
+import 'package:assign_mate/assignments/assignment_entries/entry_page.dart';
+import 'package:assign_mate/assignments/assignment_entries/new_entry_page.dart';
+import 'package:assign_mate/assignments/assignment_entries/pdf_viewer_sync.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import '../auth/authentication_page.dart';
@@ -31,6 +34,10 @@ class RouteGenerator {
   static const String editProfilePage = '/profileEditingPage';
   static const String groupChatPage = '/groupChatPage';
   static const String profileListPage = '/profileListPage';
+  static const String entryPage = '/entryPage';
+  static const String newEntryPage = '/newEntryPage';
+  static const String pdfViewer = '/pdfViewer';
+
 
 
   //private constructor
@@ -94,6 +101,18 @@ class RouteGenerator {
         String groupID = settings.arguments as String;
         return MaterialPageRoute(
           builder: (_) => ProfilesListPage(groupID: groupID),
+        );
+      case entryPage:
+        return MaterialPageRoute(
+          builder: (_) => EntryPage(),
+        );
+      case newEntryPage:
+        return MaterialPageRoute(
+        builder: (_) => NewEntryPage(),
+        );
+      case pdfViewer:
+        return MaterialPageRoute(
+          builder: (_) => PdfViewer(),
         );
 
     }

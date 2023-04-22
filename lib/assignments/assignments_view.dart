@@ -6,6 +6,7 @@ import '../bottomNavigation/navigation_bar_view.dart';
 import 'package:intl/intl.dart';
 
 class AssignmentsView extends StatelessWidget {
+  AssignmentsView({Key? key}) : super(key: key);
   final List<AssignmentTemp> assinList = [
     AssignmentTemp(DateTime(2023, 3, 29, 9, 30, 0), "cs2022"),
     AssignmentTemp(DateTime(2023, 4, 27, 9, 30, 0), "math101"),
@@ -70,6 +71,8 @@ class AssignmentsView extends StatelessWidget {
                       title: Text(assinList[index].assignmentName),
                       subtitle: Text(DateFormat('MM/dd HH:mm')
                           .format(assinList[index].dueDate)),
+                      onTap:(){Navigator.pushNamed(context,RouteGenerator.entryPage);},
+
                     );
                   } else {
                     if (assinList[index].dueDate.compareTo(DateTime.now()) >
@@ -80,6 +83,8 @@ class AssignmentsView extends StatelessWidget {
                       title: Text(assinList[index].assignmentName),
                       subtitle: Text(DateFormat('MM/dd HH:mm')
                           .format(assinList[index].dueDate)),
+                      onTap:(){Navigator.pushNamed(context,RouteGenerator.entryPage);},
+
                     );
                   }
                 },
@@ -100,6 +105,7 @@ class AssignmentsView extends StatelessWidget {
                     padding: const EdgeInsets.only(right: 16.0, bottom: 5),
                     child: FloatingActionButton(
                       onPressed: () {
+                        Navigator.pushNamed(context,RouteGenerator.newEntryPage);
                         // Add functionality here
                       },
                       child: const Icon(Icons.add),

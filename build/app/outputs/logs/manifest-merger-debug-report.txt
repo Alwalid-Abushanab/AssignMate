@@ -9,6 +9,8 @@ MERGED from [:cloud_firestore] /home/lauren/StudioProjects/cs3130-2023-groupproj
 MERGED from [:cloud_firestore] /home/lauren/StudioProjects/cs3130-2023-groupprojects-assignmate/build/cloud_firestore/intermediates/merged_manifest/debug/AndroidManifest.xml:9:5-15:19
 MERGED from [:firebase_core] /home/lauren/StudioProjects/cs3130-2023-groupprojects-assignmate/build/firebase_core/intermediates/merged_manifest/debug/AndroidManifest.xml:9:5-15:19
 MERGED from [:firebase_core] /home/lauren/StudioProjects/cs3130-2023-groupprojects-assignmate/build/firebase_core/intermediates/merged_manifest/debug/AndroidManifest.xml:9:5-15:19
+MERGED from [:url_launcher_android] /home/lauren/StudioProjects/cs3130-2023-groupprojects-assignmate/build/url_launcher_android/intermediates/merged_manifest/debug/AndroidManifest.xml:9:5-14:19
+MERGED from [:url_launcher_android] /home/lauren/StudioProjects/cs3130-2023-groupprojects-assignmate/build/url_launcher_android/intermediates/merged_manifest/debug/AndroidManifest.xml:9:5-14:19
 MERGED from [com.google.firebase:firebase-auth:21.3.0] /home/lauren/.gradle/caches/transforms-3/99c4415c85c41d201ce35622f58fe74c/transformed/jetified-firebase-auth-21.3.0/AndroidManifest.xml:28:5-73:19
 MERGED from [com.google.firebase:firebase-auth:21.3.0] /home/lauren/.gradle/caches/transforms-3/99c4415c85c41d201ce35622f58fe74c/transformed/jetified-firebase-auth-21.3.0/AndroidManifest.xml:28:5-73:19
 MERGED from [com.google.android.recaptcha:recaptcha:18.0.1] /home/lauren/.gradle/caches/transforms-3/59517f06981e5b5cb615dca3722f90c1/transformed/jetified-recaptcha-18.0.1/AndroidManifest.xml:7:5-20
@@ -60,6 +62,9 @@ MERGED from [:cloud_firestore] /home/lauren/StudioProjects/cs3130-2023-groupproj
 MERGED from [:firebase_core] /home/lauren/StudioProjects/cs3130-2023-groupprojects-assignmate/build/firebase_core/intermediates/merged_manifest/debug/AndroidManifest.xml:2:1-17:12
 MERGED from [:file_picker] /home/lauren/StudioProjects/cs3130-2023-groupprojects-assignmate/build/file_picker/intermediates/merged_manifest/debug/AndroidManifest.xml:2:1-19:12
 MERGED from [:flutter_plugin_android_lifecycle] /home/lauren/StudioProjects/cs3130-2023-groupprojects-assignmate/build/flutter_plugin_android_lifecycle/intermediates/merged_manifest/debug/AndroidManifest.xml:2:1-9:12
+MERGED from [:syncfusion_flutter_pdfviewer] /home/lauren/StudioProjects/cs3130-2023-groupprojects-assignmate/build/syncfusion_flutter_pdfviewer/intermediates/merged_manifest/debug/AndroidManifest.xml:2:1-9:12
+MERGED from [:url_launcher_android] /home/lauren/StudioProjects/cs3130-2023-groupprojects-assignmate/build/url_launcher_android/intermediates/merged_manifest/debug/AndroidManifest.xml:2:1-16:12
+MERGED from [:device_info_plus] /home/lauren/StudioProjects/cs3130-2023-groupprojects-assignmate/build/device_info_plus/intermediates/merged_manifest/debug/AndroidManifest.xml:2:1-9:12
 MERGED from [:google_sign_in_android] /home/lauren/StudioProjects/cs3130-2023-groupprojects-assignmate/build/google_sign_in_android/intermediates/merged_manifest/debug/AndroidManifest.xml:2:1-11:12
 MERGED from [androidx.multidex:multidex:2.0.0] /home/lauren/.gradle/caches/transforms-3/6dc4083b7c7580f433cecdbc41323bd2/transformed/multidex-2.0.0/AndroidManifest.xml:17:1-22:12
 MERGED from [com.google.firebase:firebase-auth:21.3.0] /home/lauren/.gradle/caches/transforms-3/99c4415c85c41d201ce35622f58fe74c/transformed/jetified-firebase-auth-21.3.0/AndroidManifest.xml:17:1-75:12
@@ -137,6 +142,12 @@ MERGED from [:file_picker] /home/lauren/StudioProjects/cs3130-2023-groupprojects
 MERGED from [:file_picker] /home/lauren/StudioProjects/cs3130-2023-groupprojects-assignmate/build/file_picker/intermediates/merged_manifest/debug/AndroidManifest.xml:5:5-7:41
 MERGED from [:flutter_plugin_android_lifecycle] /home/lauren/StudioProjects/cs3130-2023-groupprojects-assignmate/build/flutter_plugin_android_lifecycle/intermediates/merged_manifest/debug/AndroidManifest.xml:5:5-7:41
 MERGED from [:flutter_plugin_android_lifecycle] /home/lauren/StudioProjects/cs3130-2023-groupprojects-assignmate/build/flutter_plugin_android_lifecycle/intermediates/merged_manifest/debug/AndroidManifest.xml:5:5-7:41
+MERGED from [:syncfusion_flutter_pdfviewer] /home/lauren/StudioProjects/cs3130-2023-groupprojects-assignmate/build/syncfusion_flutter_pdfviewer/intermediates/merged_manifest/debug/AndroidManifest.xml:5:5-7:41
+MERGED from [:syncfusion_flutter_pdfviewer] /home/lauren/StudioProjects/cs3130-2023-groupprojects-assignmate/build/syncfusion_flutter_pdfviewer/intermediates/merged_manifest/debug/AndroidManifest.xml:5:5-7:41
+MERGED from [:url_launcher_android] /home/lauren/StudioProjects/cs3130-2023-groupprojects-assignmate/build/url_launcher_android/intermediates/merged_manifest/debug/AndroidManifest.xml:5:5-7:41
+MERGED from [:url_launcher_android] /home/lauren/StudioProjects/cs3130-2023-groupprojects-assignmate/build/url_launcher_android/intermediates/merged_manifest/debug/AndroidManifest.xml:5:5-7:41
+MERGED from [:device_info_plus] /home/lauren/StudioProjects/cs3130-2023-groupprojects-assignmate/build/device_info_plus/intermediates/merged_manifest/debug/AndroidManifest.xml:5:5-7:41
+MERGED from [:device_info_plus] /home/lauren/StudioProjects/cs3130-2023-groupprojects-assignmate/build/device_info_plus/intermediates/merged_manifest/debug/AndroidManifest.xml:5:5-7:41
 MERGED from [:google_sign_in_android] /home/lauren/StudioProjects/cs3130-2023-groupprojects-assignmate/build/google_sign_in_android/intermediates/merged_manifest/debug/AndroidManifest.xml:5:5-7:41
 MERGED from [:google_sign_in_android] /home/lauren/StudioProjects/cs3130-2023-groupprojects-assignmate/build/google_sign_in_android/intermediates/merged_manifest/debug/AndroidManifest.xml:5:5-7:41
 MERGED from [androidx.multidex:multidex:2.0.0] /home/lauren/.gradle/caches/transforms-3/6dc4083b7c7580f433cecdbc41323bd2/transformed/multidex-2.0.0/AndroidManifest.xml:20:5-43
@@ -307,6 +318,14 @@ data
 ADDED from [:file_picker] /home/lauren/StudioProjects/cs3130-2023-groupprojects-assignmate/build/file_picker/intermediates/merged_manifest/debug/AndroidManifest.xml:15:13-44
 	android:mimeType
 		ADDED from [:file_picker] /home/lauren/StudioProjects/cs3130-2023-groupprojects-assignmate/build/file_picker/intermediates/merged_manifest/debug/AndroidManifest.xml:15:19-41
+activity#io.flutter.plugins.urllauncher.WebViewActivity
+ADDED from [:url_launcher_android] /home/lauren/StudioProjects/cs3130-2023-groupprojects-assignmate/build/url_launcher_android/intermediates/merged_manifest/debug/AndroidManifest.xml:10:9-13:74
+	android:exported
+		ADDED from [:url_launcher_android] /home/lauren/StudioProjects/cs3130-2023-groupprojects-assignmate/build/url_launcher_android/intermediates/merged_manifest/debug/AndroidManifest.xml:12:13-37
+	android:theme
+		ADDED from [:url_launcher_android] /home/lauren/StudioProjects/cs3130-2023-groupprojects-assignmate/build/url_launcher_android/intermediates/merged_manifest/debug/AndroidManifest.xml:13:13-71
+	android:name
+		ADDED from [:url_launcher_android] /home/lauren/StudioProjects/cs3130-2023-groupprojects-assignmate/build/url_launcher_android/intermediates/merged_manifest/debug/AndroidManifest.xml:11:13-74
 uses-permission#android.permission.ACCESS_NETWORK_STATE
 ADDED from [com.google.firebase:firebase-auth:21.3.0] /home/lauren/.gradle/caches/transforms-3/99c4415c85c41d201ce35622f58fe74c/transformed/jetified-firebase-auth-21.3.0/AndroidManifest.xml:26:5-79
 MERGED from [com.google.firebase:firebase-firestore:24.5.0] /home/lauren/.gradle/caches/transforms-3/6d13278b73732c0258e6c3355c4e20ac/transformed/jetified-firebase-firestore-24.5.0/AndroidManifest.xml:12:5-79
