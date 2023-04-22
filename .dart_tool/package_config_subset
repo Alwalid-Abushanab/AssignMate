@@ -112,8 +112,8 @@ file:///home/lauren/.pub-cache/hosted/pub.dev/file-6.1.4/
 file:///home/lauren/.pub-cache/hosted/pub.dev/file-6.1.4/lib/
 file_picker
 2.12
-file:///home/lauren/.pub-cache/hosted/pub.dev/file_picker-4.6.1/
-file:///home/lauren/.pub-cache/hosted/pub.dev/file_picker-4.6.1/lib/
+file:///home/lauren/.pub-cache/hosted/pub.dev/file_picker-4.4.0/
+file:///home/lauren/.pub-cache/hosted/pub.dev/file_picker-4.4.0/lib/
 firebase_auth
 2.18
 file:///home/lauren/.pub-cache/hosted/pub.dev/firebase_auth-4.4.2/
@@ -178,6 +178,10 @@ frontend_server_client
 2.12
 file:///home/lauren/.pub-cache/hosted/pub.dev/frontend_server_client-3.2.0/
 file:///home/lauren/.pub-cache/hosted/pub.dev/frontend_server_client-3.2.0/lib/
+full_screen_image
+2.12
+file:///home/lauren/.pub-cache/hosted/pub.dev/full_screen_image-2.0.0/
+file:///home/lauren/.pub-cache/hosted/pub.dev/full_screen_image-2.0.0/lib/
 glob
 2.15
 file:///home/lauren/.pub-cache/hosted/pub.dev/glob-2.1.1/
@@ -291,9 +295,9 @@ path_provider_platform_interface
 file:///home/lauren/.pub-cache/hosted/pub.dev/path_provider_platform_interface-2.0.6/
 file:///home/lauren/.pub-cache/hosted/pub.dev/path_provider_platform_interface-2.0.6/lib/
 path_provider_windows
-2.12
-file:///home/lauren/.pub-cache/hosted/pub.dev/path_provider_windows-2.0.7/
-file:///home/lauren/.pub-cache/hosted/pub.dev/path_provider_windows-2.0.7/lib/
+2.17
+file:///home/lauren/.pub-cache/hosted/pub.dev/path_provider_windows-2.1.5/
+file:///home/lauren/.pub-cache/hosted/pub.dev/path_provider_windows-2.1.5/lib/
 petitparser
 2.18
 file:///home/lauren/.pub-cache/hosted/pub.dev/petitparser-5.1.0/
@@ -516,8 +520,8 @@ file:///home/lauren/.pub-cache/hosted/pub.dev/webkit_inspection_protocol-1.2.0/
 file:///home/lauren/.pub-cache/hosted/pub.dev/webkit_inspection_protocol-1.2.0/lib/
 win32
 2.17
-file:///home/lauren/.pub-cache/hosted/pub.dev/win32-2.7.0/
-file:///home/lauren/.pub-cache/hosted/pub.dev/win32-2.7.0/lib/
+file:///home/lauren/.pub-cache/hosted/pub.dev/win32-3.1.4/
+file:///home/lauren/.pub-cache/hosted/pub.dev/win32-3.1.4/lib/
 xdg_directories
 2.17
 file:///home/lauren/.pub-cache/hosted/pub.dev/xdg_directories-1.0.0/

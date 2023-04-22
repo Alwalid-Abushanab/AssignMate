@@ -22,10 +22,6 @@ version: 1.0.0+1
 environment:
   sdk: '>=2.18.6 <3.0.0'
   
- dependency_overrides:
-  ffi: ^2.0.1
-
-
 dependency_overrides:
   ffi: ^2.0.1
 
