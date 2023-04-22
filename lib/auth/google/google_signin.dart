@@ -39,6 +39,7 @@ class GoogleSignInButton {
                       TextButton(
                         child: const Text('OK'),
                         onPressed: () async {
+                          FocusScope.of(context).unfocus();
                           if(usernameController.text != ''){
                             loading(context);
                             final snapshot = await Database().getUserData(usernameController.text);

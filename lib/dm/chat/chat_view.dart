@@ -94,6 +94,7 @@ class ChatView extends StatelessWidget {
                               message: snapshot.data.docs[i]['message'],
                               sender: snapshot.data.docs[i]['sender'],
                               url: snapshot.data.docs[i]['file'],
+                              time: snapshot.data.docs[i]["time"].toString(),
                             );
                           }): const Center();
                     },

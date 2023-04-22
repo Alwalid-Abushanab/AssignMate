@@ -78,6 +78,7 @@ class LoginView extends StatelessWidget {
                     return GestureDetector(
                       onTap: state is LoggingIn ? null : () async {
                         BlocProvider.of<LoginCubit>(context).tryLoggingIn();
+                        FocusScope.of(context).unfocus();
                         try {
                           await FirebaseAuth.instance.signInWithEmailAndPassword(
                               email: emailController.text,
