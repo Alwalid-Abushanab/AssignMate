@@ -82,6 +82,7 @@ class GroupChatView extends StatelessWidget {
                               sender: snapshot.data.docs[i]['sender'],
                               url: snapshot.data.docs[i]['file'],
                               user: info.currUser,
+                              time: snapshot.data.docs[i]['time'].toString(),
                             );
                           }): const Center();
                     },
