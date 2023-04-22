@@ -177,6 +177,31 @@ class Database {
     });
   }
 
+  addEvent(String username, Map<String,dynamic> event){
+    usersRef.doc(username).collection("events").add(event);
+  }
+
+  getEvents(String username) async{
+    Map<DateTime, List<String>> _events = {};
+
+    await usersRef
+        .doc(username)
+        .collection("events")
+        .get()
+        .then((QuerySnapshot snapshot) {
+      snapshot.docs.forEach((DocumentSnapshot document) {
+        DateTime date = document.get("Date").toDate();
+        String name = document.get("Name");
+        if (_events[date] == null) {
+          _events[date] = [name];
+        } else {
+          _events[date]?.add(name);
+        }
+      });
+    });
+
+    return _events;
+  }
 
 
   getChats(String dmId) async {
