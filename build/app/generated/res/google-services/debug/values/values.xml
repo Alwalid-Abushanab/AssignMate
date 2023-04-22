@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="default_web_client_id" translatable="false">508399451512-0r012paccop58fs7veqfqnjkei2c14av.apps.googleusercontent.com</string>
+    <string name="gcm_defaultSenderId" translatable="false">508399451512</string>
+    <string name="google_api_key" translatable="false">AIzaSyDj3jv5GzR1mBbkb_NKAmfgPk17juC3i7A</string>
+    <string name="google_app_id" translatable="false">1:508399451512:android:b00ba615802164b7c45c8d</string>
+    <string name="google_crash_reporting_api_key" translatable="false">AIzaSyDj3jv5GzR1mBbkb_NKAmfgPk17juC3i7A</string>
+    <string name="google_storage_bucket" translatable="false">assignmate-31057.appspot.com</string>
+    <string name="project_id" translatable="false">assignmate-31057</string>
+</resources>
