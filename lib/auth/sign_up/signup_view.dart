@@ -83,6 +83,7 @@ class SignUpView extends StatelessWidget {
                     onTap: state is SigningUp ? null : () async {
                       BlocProvider.of<SignupCubit>(context).trySigningUp();
                       try {
+                        FocusScope.of(context).unfocus();
                         if(passwordController.text == confirmPasswordController.text) {
                           if (usernameController.text != ""){
                             final snapshot = await Database().getUserData(usernameController.text);
