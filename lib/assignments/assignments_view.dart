@@ -115,7 +115,6 @@ class AssignmentsView extends StatelessWidget {
                     child: FloatingActionButton(
                       onPressed: () {
                         Navigator.pushNamed(context,RouteGenerator.newEntryPage);
-                        // Add functionality here
                       },
                       child: const Icon(Icons.add),
                     ),

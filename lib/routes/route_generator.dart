@@ -7,7 +7,7 @@ import 'package:assign_mate/group_chat/group_page.dart';
 import 'package:assign_mate/profile/profile_page.dart';
 import 'package:assign_mate/routes/unknown_screen.dart';
 import 'package:assign_mate/assignments/assignment_entries/entry_page.dart';
-import 'package:assign_mate/assignments/assignment_entries/new_entry_page.dart';
+import 'package:assign_mate/assignments/assignment_entries/new_entry/new_entry_page.dart';
 import 'package:assign_mate/assignments/assignment_entries/pdf_viewer_sync.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';

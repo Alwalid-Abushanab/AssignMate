@@ -98,26 +98,25 @@ class Database {
     });
   }
 
-  Future createAssignment(String title, String dueDate, String mainFile, List<String> otherFiles, List<String> members) async{
+  Future createAssignment(String title, String dueDate) async{
     DocumentReference dr = await assignmentsRef.add({
       "assignment_ID": "",
       "group_ID": "",
       "members": [],
       "files": [],
       "dueDate": dueDate,
-      "main pdf": mainFile,
+      "main pdf": "",
       "title": title,
     });
 
     String currUsername = await getUsernameFromEmail(FirebaseAuth.instance.currentUser!.email!);
 
 
-    String groupID = await createGroupChat(dr.id, [currUsername, ...members], title);
+    String groupID = await createGroupChat(dr.id, [currUsername], title);
 
     await dr.update({
       "assignment_ID": dr.id,
-      "members": [currUsername, ...members],
-      "files": otherFiles,
+      "members": [currUsername],
       'group_ID': groupID,
     });
 
@@ -125,13 +124,13 @@ class Database {
       "assignments": FieldValue.arrayUnion([dr.id]),
       "assignmentsGroups": FieldValue.arrayUnion([groupID]),
     });
-
+/*
     for(int i = 0; i < members.length; i++){
       await usersRef.doc(members[i]).update({
         "assignments": FieldValue.arrayUnion([dr.id]),
         "assignmentsGroups": FieldValue.arrayUnion([groupID]),
       });
-    }
+    }*/
   }
 
   Future createGroupChat(String assignmentID, List<String> members, String title) async{
