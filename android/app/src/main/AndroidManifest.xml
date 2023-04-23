@@ -1,6 +1,15 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="com.example.assign_mate">
+
+    <uses-permission android:name="android.permission.INTERNET"/>
+    <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE"/>
+    <uses-permission android:name="android.permission.MANAGE_EXTERNAL_STORAGE"/>
+    <uses-permission android:name="android.permission.ACCESS_MEDIA_LOCATION"/>
+
+    android:requestLegacyExternalStorage="true"
+    android:hardwareAccelerated="true"
    <application
+        android:requestLegacyExternalStorage="true"
         android:label="assign_mate"
         android:name="${applicationName}"
         android:icon="@mipmap/ic_launcher">

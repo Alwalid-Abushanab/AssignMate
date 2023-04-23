@@ -1,3 +1,4 @@
+//import 'dart:html';
 import 'dart:io';
 import 'dart:async';
 import 'package:flutter/material.dart';
@@ -5,16 +6,31 @@ import '../../bottomNavigation/navigation_bar_view.dart';
 import '../../routes/route_generator.dart';
 import 'package:file_picker/file_picker.dart';
 import 'add_group_member.dart';
+import 'package:permission_handler/permission_handler.dart';
 
 //currently hardcoded with assignment info - FIX
 
 class EntryView extends StatelessWidget {
   Future<List<File>?> getFiles() async{
-    FilePickerResult? result = await FilePicker.platform.pickFiles(allowMultiple: true);
-    if(result != null) {
-      return result.paths.map((path)=> File(path??"")).toList();
+    //If we don't have permission, request it
+    bool hasPermission = await Permission.manageExternalStorage.isGranted;
+    if(!hasPermission){
+      hasPermission= await Permission.manageExternalStorage.request().isGranted;
     }
-    else{ return null;}
+
+    if(hasPermission) {
+      FilePickerResult? result = await FilePicker.platform.pickFiles(
+          allowMultiple: true);
+      if (result != null) {
+        return result.paths.map((path) => File(path ?? "")).toList();
+      }
+      else {
+        return null;
+      }
+    }
+    else{
+      return null;
+    }
   }
 
   @override
@@ -50,15 +66,31 @@ class EntryView extends StatelessWidget {
             ElevatedButton(
               onPressed: () {
                 Navigator.pushNamed(context,RouteGenerator.pdfViewer);},
-              child: const Text('View Assignent Outline'),
+              child: const Text('View Assignment Outline'),
             ),
             const Text(            // Will change to a more suitable widget, will display links to all assignment files
               "Files Placeholder",
               textAlign: TextAlign.left,
             ),
             ElevatedButton(
-              onPressed: (){
-              var files = getFiles();
+              onPressed: ()async{
+                PermissionStatus status = await Permission.manageExternalStorage.request();
+                print(status.toString());
+                if(status.isGranted){
+                  FilePickerResult? result = await FilePicker.platform.pickFiles(
+                      allowMultiple: true);
+                  if (result != null) {
+                    var files = result.paths.map((path) => File(path ?? "")).toList();
+                  }
+                }
+                if(status.isDenied){
+                  ScaffoldMessenger.of(context).showSnackBar(
+                      const SnackBar(content: Text ("Cannot upload files without permission")));
+                }
+                if(status.isPermanentlyDenied){
+                  await openAppSettings();
+                }
+                var files = getFiles();
               //Now gotta add updating the database functionality
 
               },
@@ -76,3 +108,4 @@ class EntryView extends StatelessWidget {
     );
   }
 }
+
