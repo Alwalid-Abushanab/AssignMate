@@ -5,10 +5,23 @@ abstract class AssignmentsState {
   const AssignmentsState();
 }
 
-class currentAssignments extends AssignmentsState {
-  const currentAssignments();
+class AssignmentsInitial extends AssignmentsState {}
+
+class CurrentAssignments extends AssignmentsState {}
+
+class PastAssignments extends AssignmentsState {}
+
+class AssignmentsLoading extends AssignmentsState {}
+
+class AssignmentsLoaded extends AssignmentsState {
+  final Stream? snapshots;
+
+  const AssignmentsLoaded({required this.snapshots});
 }
 
-class pastAssignments extends AssignmentsState {
-  const pastAssignments();
+class AssignmentsInfoLoaded extends AssignmentsState{
+  final List<Stream?> assignmentsSnapshots;
+
+  const AssignmentsInfoLoaded({required this.assignmentsSnapshots});
 }
+
