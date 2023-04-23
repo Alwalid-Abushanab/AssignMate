@@ -64,6 +64,11 @@ class Database {
     return usersRef.doc(username).snapshots();
   }
 
+  getUserAssignments() async{
+    final username = await getUsernameFromEmail(FirebaseAuth.instance.currentUser!.email!);
+    return usersRef.doc(username).snapshots();
+  }
+
   Future<String> getUsernameFromEmail(String email) async {
     final snapshot = await usersRef.where('email', isEqualTo: email).get();
     if (snapshot.docs.isNotEmpty) {
@@ -124,6 +129,14 @@ class Database {
       "assignments": FieldValue.arrayUnion([dr.id]),
       "assignmentsGroups": FieldValue.arrayUnion([groupID]),
     });
+
+    Map<String, dynamic> event = {
+      "Name" : "$title DueDate",
+      "Date" : DateTime.parse(dueDate),
+    };
+
+    await addEvent(currUsername, event);
+
 /*
     for(int i = 0; i < members.length; i++){
       await usersRef.doc(members[i]).update({
@@ -157,6 +170,10 @@ class Database {
 
   getGroupInfo(String groupID){
     return groupChatRef.doc(groupID).snapshots();
+  }
+
+  getAssignment(String assignmentID){
+    return assignmentsRef.doc(assignmentID).snapshots();
   }
 
   sendMessage(String dmID, Map<String,dynamic> message){
