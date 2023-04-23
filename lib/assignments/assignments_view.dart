@@ -1,4 +1,6 @@
 import 'package:assign_mate/assignments/cubit/assignments_cubit.dart';
+import 'package:assign_mate/assignments/reminder/cubit/reminder_cubit.dart';
+import 'package:assign_mate/assignments/reminder/reminder_page.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import '../routes/route_generator.dart';
@@ -19,6 +21,8 @@ class AssignmentsView extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     assinList.sort((a, b) => a.dueDate.compareTo(b.dueDate));
+    DateTime _selectedDate = DateTime(0);
+    String? selected;
 
     return Scaffold(
         appBar: AppBar(
@@ -28,7 +32,6 @@ class AssignmentsView extends StatelessWidget {
         ),
         body: BlocBuilder<AssignmentsCubit, AssignmentsState>(
             builder: (context, state) {
-          print(assinList.length);
           return Column(
             children: [
               (state is currentAssignments)
@@ -95,10 +98,16 @@ class AssignmentsView extends StatelessWidget {
                   Padding(
                     padding: const EdgeInsets.only(left: 16.0, bottom: 5),
                     child: FloatingActionButton(
-                      onPressed: () {
-                        // Add functionality here
-                      },
-                      child: const Icon(Icons.alarm),
+                          onPressed: () {
+                            final List<String> assignNames = [];
+
+                            for(int i = 0; i < assinList.length; i++){
+                              assignNames.add(assinList[i].assignmentName);
+                            }
+
+                            Navigator.pushNamed(context, RouteGenerator.reminderPage, arguments: assignNames);
+                          },
+                          child: const Icon(Icons.alarm),
                     ),
                   ),
                   Padding(

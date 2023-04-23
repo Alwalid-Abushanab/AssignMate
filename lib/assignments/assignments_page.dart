@@ -1,9 +1,10 @@
+import 'package:assign_mate/assignments/reminder/cubit/reminder_cubit.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'assignments_view.dart';
 import 'cubit/assignments_cubit.dart';
 
-/// Stateless widget responsible for providing StreakCubit to StreakView
+
 class AssignmentsPage extends StatelessWidget {
   const AssignmentsPage({Key? key}) : super(key: key);
   @override
