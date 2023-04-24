@@ -1,11 +1,10 @@
 import 'package:assign_mate/dm/cubit/dm_cubit.dart';
 import 'package:assign_mate/dm/dm_view.dart';
 import 'package:assign_mate/dm/tiles/cubit/dm_tiles_cubit.dart';
-import 'package:assign_mate/dm/tiles/dm_tile.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
-/// Stateless widget responsible for providing StreakCubit to StreakView
+
 class DMPage extends StatelessWidget {
   const DMPage({Key? key}) : super(key: key);
 

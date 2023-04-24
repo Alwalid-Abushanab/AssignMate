@@ -27,7 +27,7 @@ class ProfileView extends StatelessWidget {
                 title: const Text("Mate's Profile"),
                 automaticallyImplyLeading: false,
               ),
-              body: const CircularProgressIndicator(),
+              body: const Center(child: CircularProgressIndicator()),
             );
           }
           else if (state is ProfileLoading) {
@@ -37,7 +37,7 @@ class ProfileView extends StatelessWidget {
                 title: const Text("Mate's Profile"),
                 automaticallyImplyLeading: false,
               ),
-              body: const CircularProgressIndicator(),
+              body: const Center(child: CircularProgressIndicator()),
             );
           }
           else if (state is ProfileLoaded) {

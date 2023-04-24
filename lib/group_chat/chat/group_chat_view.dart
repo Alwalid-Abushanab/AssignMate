@@ -49,10 +49,10 @@ class GroupChatView extends StatelessWidget {
         builder: (context, state) {
           if(state is GroupChatInitial){
             context.read<GroupChatCubit>().getMessages(info.groupID);
-            return const CircularProgressIndicator();
+            return const Center(child: CircularProgressIndicator());
           }
           else if(state is GroupChatLoading){
-            return const CircularProgressIndicator();
+            return const Center(child: CircularProgressIndicator());
           }
           else if (state is GroupChatLoaded){
             final chats = state.snapshot;
@@ -132,6 +132,16 @@ class GroupChatView extends StatelessWidget {
                                       ),
                                       TextButton(
                                         onPressed: () async {
+                                          showDialog(
+                                              context: context,
+                                              barrierDismissible: false,
+                                              builder: (context) {
+                                                return const AlertDialog(
+                                                    title: CircularProgressIndicator()
+                                                );
+                                              }
+                                          );
+
                                           final file = File(result.files.single.path!);
                                           Database().groupSendFile(
                                               file,
@@ -139,7 +149,6 @@ class GroupChatView extends StatelessWidget {
                                               info.groupID,
                                               info.currUser
                                           );
-                                          Navigator.pop(context);
 
                                           if (scrollController.position.hasContentDimensions) {
                                             scrollController.animateTo(
@@ -148,6 +157,8 @@ class GroupChatView extends StatelessWidget {
                                               curve: Curves.easeOut,
                                             );
                                           }
+                                          Navigator.pop(context);
+                                          Navigator.pop(context);
                                         },
                                         child: const Text("send"),
                                       ),

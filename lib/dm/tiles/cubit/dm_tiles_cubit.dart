@@ -11,9 +11,8 @@ class DMTilesCubit extends Cubit<DMTilesState> {
 
   Future<void> getInfo(String id) async{
     emit(DMTileLoading());
-    final uid = FirebaseAuth.instance.currentUser?.uid;
-    final snapshot = await Database(userid: uid).getDMchat(id);
-    final username = await Database(userid: uid).getUsernameFromEmail(FirebaseAuth.instance.currentUser!.email!);
+    final snapshot = await Database().getDMchat(id);
+    final username = await Database().getUsernameFromEmail(FirebaseAuth.instance.currentUser!.email!);
     final picUrl = await Database().getPicFromDMID(id,username);
     emit(DMTileLoaded(snapshot: snapshot, currUsername: username, picUrl: picUrl));
   }

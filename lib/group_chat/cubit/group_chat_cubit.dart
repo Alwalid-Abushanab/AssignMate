@@ -2,7 +2,6 @@ import 'package:assign_mate/database/database.dart';
 import 'package:bloc/bloc.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:meta/meta.dart';
-
 part 'group_chat_state.dart';
 
 class DmCubit extends Cubit<DmState> {

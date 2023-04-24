@@ -2,7 +2,6 @@ import 'package:assign_mate/dm/chat/tile/cubit/chat_tile_cubit.dart';
 import 'package:assign_mate/dm/info.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-
 import 'chat_view.dart';
 import 'cubit/chat_cubit.dart';
 

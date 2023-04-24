@@ -1,7 +1,6 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-
 import '../../../../routes/route_generator.dart';
 import 'cubit/member_tile_cubit.dart';
 
@@ -17,10 +16,10 @@ class MemberTile extends StatelessWidget {
       builder: (context, state) {
         if(state is MemberTileInitial){
           context.read<MemberTileCubit>().getInfo(memberUsername);
-          return const CircularProgressIndicator();
+          return const Center(child: CircularProgressIndicator());
         }
         else if(state is MemberTileLoading){
-          return const CircularProgressIndicator();
+          return const Center(child: CircularProgressIndicator());
         }
         else if (state is MemberTileLoaded){
           final currUsername = state.currUsername;

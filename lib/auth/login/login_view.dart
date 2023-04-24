@@ -1,5 +1,4 @@
 import 'package:flutter/foundation.dart';
-
 import '../../routes/route_generator.dart';
 import '../google/google_signin.dart';
 import 'cubit/login_cubit.dart';

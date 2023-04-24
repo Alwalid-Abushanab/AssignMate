@@ -1,9 +1,7 @@
 import 'package:bloc/bloc.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:meta/meta.dart';
-
 import '../../database/database.dart';
-
 part 'assignments_state.dart';
 
 class AssignmentsCubit extends Cubit<AssignmentsState> {

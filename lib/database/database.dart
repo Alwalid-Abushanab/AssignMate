@@ -1,8 +1,9 @@
 import 'dart:io';
-
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:firebase_storage/firebase_storage.dart';
+
+
 class Database {
   final String? userid;
   Database({this.userid});
@@ -95,11 +96,11 @@ class Database {
     });
 
     await usersRef.doc(currUsername).update({
-      "DM": FieldValue.arrayUnion([username])
+      "DM": FieldValue.arrayUnion([dm.id])
     });
 
     await usersRef.doc(username).update({
-      "DM": FieldValue.arrayUnion([currUsername])
+      "DM": FieldValue.arrayUnion([dm.id])
     });
   }
 
@@ -138,14 +139,6 @@ class Database {
     await addEvent(currUsername, event);
 
     return dr.id;
-
-/*
-    for(int i = 0; i < members.length; i++){
-      await usersRef.doc(members[i]).update({
-        "assignments": FieldValue.arrayUnion([dr.id]),
-        "assignmentsGroups": FieldValue.arrayUnion([groupID]),
-      });
-    }*/
   }
 
   addMember(String assignmentID, String name, String groupID) async{
@@ -258,7 +251,7 @@ class Database {
   }
 
   getEvents(String username) async{
-    Map<DateTime, List<String>> _events = {};
+    Map<DateTime, List<String>> events = {};
 
     await usersRef
         .doc(username)
@@ -268,15 +261,15 @@ class Database {
       snapshot.docs.forEach((DocumentSnapshot document) {
         DateTime date = document.get("Date").toDate();
         String name = document.get("Name");
-        if (_events[date] == null) {
-          _events[date] = [name];
+        if (events[date] == null) {
+          events[date] = [name];
         } else {
-          _events[date]?.add(name);
+          events[date]?.add(name);
         }
       });
     });
 
-    return _events;
+    return events;
   }
 
 

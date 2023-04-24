@@ -1,5 +1,7 @@
 class Assignment {
   String assignmentName;
   DateTime dueDate;
-  Assignment(this.dueDate, this.assignmentName);
+  String id;
+
+  Assignment(this.dueDate, this.assignmentName, this.id);
 }

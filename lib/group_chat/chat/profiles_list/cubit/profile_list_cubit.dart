@@ -1,8 +1,6 @@
 import 'package:bloc/bloc.dart';
 import 'package:meta/meta.dart';
-
 import '../../../../database/database.dart';
-
 part 'profile_list_state.dart';
 
 class ProfileListCubit extends Cubit<ProfileListState> {

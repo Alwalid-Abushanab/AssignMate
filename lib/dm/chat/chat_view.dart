@@ -62,10 +62,10 @@ class ChatView extends StatelessWidget {
         builder: (context, state) {
           if(state is ChatInitial){
             context.read<ChatCubit>().getMessages(info.dmId);
-            return const CircularProgressIndicator();
+            return const Center(child: CircularProgressIndicator());
           }
           else if(state is ChatLoading){
-            return const CircularProgressIndicator();
+            return const Center(child: CircularProgressIndicator());
           }
           else if (state is ChatLoaded){
             final chats = state.snapshot;
@@ -144,6 +144,16 @@ class ChatView extends StatelessWidget {
                                       ),
                                       TextButton(
                                         onPressed: () async {
+                                          showDialog(
+                                              context: context,
+                                              barrierDismissible: false,
+                                              builder: (context) {
+                                                return const AlertDialog(
+                                                    title: CircularProgressIndicator()
+                                                );
+                                              }
+                                          );
+
                                           final file = File(result.files.single.path!);
                                           Database().sendFile(
                                               file,
@@ -152,8 +162,6 @@ class ChatView extends StatelessWidget {
                                               info.receiver == info.firstUser? info.secondUser: info.firstUser
                                           );
 
-                                          Navigator.pop(context);
-
                                           if (scrollController.position.hasContentDimensions) {
                                             scrollController.animateTo(
                                               scrollController.position.maxScrollExtent,
@@ -161,6 +169,9 @@ class ChatView extends StatelessWidget {
                                               curve: Curves.easeOut,
                                             );
                                           }
+
+                                          Navigator.pop(context);
+                                          Navigator.pop(context);
                                         },
                                         child: const Text("send"),
                                       ),
@@ -267,7 +278,7 @@ class ChatView extends StatelessWidget {
             );
           }
           else {
-            return Text("Something went wrong");
+            return const Text("Something went wrong");
           }
           },
       ),

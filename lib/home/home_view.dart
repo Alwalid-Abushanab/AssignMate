@@ -31,7 +31,7 @@ class HomeView extends StatelessWidget {
           builder: (context, state) {
             if(state is CalendarInitial){
               context.read<CalendarCubit>().getEvents();
-              return const CircularProgressIndicator();
+              return const Center(child: CircularProgressIndicator());
             }
             else if(state is CalendarMonth){
               events = state.events;
@@ -170,7 +170,7 @@ class HomeView extends StatelessWidget {
               );
             }
             else{
-              return Text("Something Gone Wrong");
+              return const Text("Something Gone Wrong");
             }
           },
         ),
@@ -230,18 +230,21 @@ class HomeView extends StatelessWidget {
 
   SizedBox getEvents(BuildContext context, DateTime selectedDate, Map<DateTime, List<String>> events){
     return SizedBox(
-      height: 200,
-      child: ListView.builder(
-        itemCount: events[DateTime(selectedDate.year,selectedDate.month,selectedDate.day)]?.length ?? 0,
-        itemBuilder: (context,i){
-          return Padding(
-            padding: const EdgeInsets.symmetric(vertical: 5),
-            child: ListTile(
-              title: Text(events[DateTime(selectedDate.year,selectedDate.month,selectedDate.day)]![i]),
-              tileColor: Colors.grey,
-            ),
-          );
-        },
+      height: 230,
+      child: Card(
+        elevation: 0,
+        child: ListView.builder(
+          itemCount: events[DateTime(selectedDate.year,selectedDate.month,selectedDate.day)]?.length ?? 0,
+          itemBuilder: (context,i){
+            return Padding(
+              padding: const EdgeInsets.symmetric(vertical: 5),
+              child: ListTile(
+                title: Text(events[DateTime(selectedDate.year,selectedDate.month,selectedDate.day)]![i]),
+                tileColor: Colors.grey,
+              ),
+            );
+          },
+        ),
       ),
     );
   }

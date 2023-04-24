@@ -4,7 +4,6 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:intl/intl.dart';
-
 import 'cubit/group_tiles_cubit.dart';
 
 class GroupChatTile extends StatelessWidget {
@@ -20,10 +19,10 @@ class GroupChatTile extends StatelessWidget {
         builder: (context, state) {
           if (state is TilesInitial){
             context.read<GroupTilesCubit>().getInfo(id);
-            return const CircularProgressIndicator();
+            return const Center(child: CircularProgressIndicator());
           }
           else if (state is TileLoading){
-            return const CircularProgressIndicator();
+            return const Center(child: CircularProgressIndicator());
           }
           else if (state is TileLoaded){
             final groupData = state.snapshot;
@@ -67,12 +66,12 @@ class GroupChatTile extends StatelessWidget {
                   );
                 }
                 else {
-                  return const CircularProgressIndicator();
+                  return const Center(child: CircularProgressIndicator());
                 }
               },
             );
           }
-          return Text("something went wrong");
+          return const Text("something went wrong");
         });
   }
 

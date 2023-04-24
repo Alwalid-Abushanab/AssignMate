@@ -62,6 +62,7 @@ dependencies:
   full_screen_image: ^2.0.0
   permission_handler: ^10.2.0
   path_provider: ^2.0.14
+  flutter_file_downloader: ^1.1.2
 
 
 dev_dependencies:

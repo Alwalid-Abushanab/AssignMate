@@ -2,12 +2,9 @@ import 'package:assign_mate/database/database.dart';
 import 'package:assign_mate/dm/cubit/dm_cubit.dart';
 import 'package:assign_mate/dm/tiles/cubit/dm_tiles_cubit.dart';
 import 'package:assign_mate/dm/tiles/dm_tile.dart';
-import 'package:assign_mate/routes/route_generator.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
-import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:shared_preferences/shared_preferences.dart';
 
 import '../bottomNavigation/navigation_bar_view.dart';
 
@@ -28,10 +25,10 @@ class DMView extends StatelessWidget {
           builder: (context, state) {
             if (state is DmInitial){
               context.read<DmCubit>().getMessengers();
-              return const CircularProgressIndicator();
+              return const Center(child: CircularProgressIndicator());
             }
             else if (state is DmLoading){
-              return const CircularProgressIndicator();
+              return const Center(child: CircularProgressIndicator());
             }
             else if (state is DmLoaded){
               final messengers = state.snapshot;
@@ -60,7 +57,7 @@ class DMView extends StatelessWidget {
                     }
                   }
                   else {
-                    return const CircularProgressIndicator();
+                    return const Center(child: CircularProgressIndicator());
                   }
                 },
               );
@@ -105,14 +102,20 @@ class DMView extends StatelessWidget {
                     child: const Text("Cancel")),
                   ElevatedButton(
                       onPressed: () async {
+                        if(controller.text.isEmpty){
+                          return;
+                        }
+
                         showDialog(
                             context: context,
+                            barrierDismissible: false,
                             builder: (context) {
                               return const AlertDialog(
                                   title: CircularProgressIndicator()
                               );
                             }
                         );
+
                         QuerySnapshot querySnapshot = await Database().getUserData(controller.text);
                         if (querySnapshot.docs.isNotEmpty){
                           await Database().createDM(controller.text);

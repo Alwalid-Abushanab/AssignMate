@@ -7,11 +7,11 @@ import 'package:assign_mate/group_chat/chat/profiles_list/profiles_list_page.dar
 import 'package:assign_mate/group_chat/group_page.dart';
 import 'package:assign_mate/profile/profile_page.dart';
 import 'package:assign_mate/routes/unknown_screen.dart';
-import 'package:assign_mate/assignments/assignment_entries/entry_page.dart';
-import 'package:assign_mate/assignments/assignment_entries/new_entry/new_entry_page.dart';
-import 'package:assign_mate/assignments/assignment_entries/pdf_viewer_sync.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
+import '../assignments/assignment_view/assignment_page.dart';
+import '../assignments/assignment_view/view_outline.dart';
+import '../assignments/new_entry/new_entry_page.dart';
 import '../auth/authentication_page.dart';
 import '../auth/login/login_page.dart';
 import '../auth/reset_password/reset_password_page.dart';
@@ -107,16 +107,18 @@ class RouteGenerator {
           builder: (_) => ProfilesListPage(groupID: groupID),
         );
       case entryPage:
+        String assignmentID = settings.arguments as String;
         return MaterialPageRoute(
-          builder: (_) => EntryPage(),
+          builder: (_) => AssignmentPage(assignmentID: assignmentID),
         );
       case newEntryPage:
         return MaterialPageRoute(
         builder: (_) => NewEntryPage(),
         );
       case pdfViewer:
+        String url = settings.arguments as String;
         return MaterialPageRoute(
-          builder: (_) => PdfViewer(),
+          builder: (_) => ViewOutline(url: url,),
         );
       case reminderPage:
         List<String> assignments = settings.arguments as List<String>;
