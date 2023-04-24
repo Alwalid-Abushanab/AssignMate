@@ -255,7 +255,7 @@ class EditAssignmentView extends StatelessWidget {
                                   builder: (BuildContext context) {
                                     return AlertDialog(
                                       title: const Text("Save changes?"),
-                                      content: const Text("Do you want to save the file as the outline?"),
+                                      content: const Text("Do you want to save the file?"),
                                       actions: [
                                         TextButton(
                                           onPressed: () {
