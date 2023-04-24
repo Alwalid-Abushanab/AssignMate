@@ -1,11 +1,9 @@
 import 'dart:io';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:file_picker/file_picker.dart';
-import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-
 import '../../database/database.dart';
 import 'cubit/edit_assignment_cubit.dart';
 
@@ -78,7 +76,7 @@ class EditAssignmentView extends StatelessWidget {
                                 },
                             ),
                           ),
-                          Divider(color: Colors.black,),
+                          const Divider(color: Colors.black,),
                           const SizedBox(height: 5,),
                           const Text("Files: ", style: TextStyle(fontSize: 20),),
                           Expanded(
@@ -137,12 +135,14 @@ class EditAssignmentView extends StatelessWidget {
                                               onPressed: () async {
                                                 showDialog(
                                                     context: context,
+                                                    barrierDismissible: false,
                                                     builder: (context) {
                                                       return const AlertDialog(
                                                           title: CircularProgressIndicator()
                                                       );
                                                     }
                                                 );
+
                                                 QuerySnapshot querySnapshot = await Database().getUserData(controller.text);
                                                 if (querySnapshot.docs.isNotEmpty){
                                                   await Database().addMember(assignmentID,controller.text, snapshot.data['group_ID']);
@@ -299,23 +299,29 @@ class EditAssignmentView extends StatelessWidget {
                                                       actions: [
                                                         ElevatedButton(
                                                             onPressed: (){
-                                                              Navigator.of(context).pop();
+                                                              Navigator.pop(context);
+                                                              Navigator.pop(context);
                                                             },
                                                             child: const Text("Cancel")),
                                                         ElevatedButton(
                                                             onPressed: () async {
+                                                              if(controller.text.isEmpty){
+                                                                return;
+                                                              }
+
                                                               showDialog(
                                                                   context: context,
+                                                                  barrierDismissible: false,
                                                                   builder: (context) {
                                                                     return const AlertDialog(
                                                                         title: CircularProgressIndicator()
                                                                     );
                                                                   }
                                                               );
-                                                              Navigator.of(context).pop();
-                                                              Navigator.of(context).pop();
 
                                                               await Database().addFiles(assignmentID,file, controller.text);
+
+                                                              Navigator.pop(context);
                                                               Navigator.pop(context);
                                                               Navigator.pop(context);
 
@@ -349,8 +355,8 @@ class EditAssignmentView extends StatelessWidget {
                     ),
                   );
                 }
-                else {
-                  return const Text("Something went Wrong");
+                else{
+                  return Center(child: const CircularProgressIndicator());
                 }
               },
             );

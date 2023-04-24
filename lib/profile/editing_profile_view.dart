@@ -1,5 +1,4 @@
 import 'dart:io';
-
 import 'package:assign_mate/database/database.dart';
 import 'package:assign_mate/routes/route_generator.dart';
 import 'package:file_picker/file_picker.dart';
@@ -113,12 +112,22 @@ class EditingProfileView extends StatelessWidget {
                                   ),
                                   TextButton(
                                     onPressed: () async {
+                                      showDialog(
+                                          context: context,
+                                          builder: (BuildContext context) {
+                                            return AlertDialog(
+                                              title: const Center(child: CircularProgressIndicator(),),
+                                            );
+                                          },
+                                      );
+
                                       final file = File(result.files.single.path!);
                                       await Database().updateUserPic(file);
-                                      Navigator.pop(context);
                                       final email = FirebaseAuth.instance.currentUser!.email!;
                                       final username = await Database().getUsernameFromEmail(email);
-                                      Navigator.pushNamed(context, RouteGenerator.profilePage, arguments: username);
+
+                                      Navigator.pop(context);
+                                      Navigator.pop(context);
                                     },
                                     child: const Text("Save"),
                                   ),
@@ -167,6 +176,15 @@ class EditingProfileView extends StatelessWidget {
                   ),
                   ElevatedButton(
                     onPressed: () async{
+                      showDialog(
+                        context: context,
+                        builder: (BuildContext context) {
+                          return AlertDialog(
+                            title: const Center(child: CircularProgressIndicator(),),
+                          );
+                        },
+                      );
+
                       await Database().updateUserBio(bioController.text);
                       final email = FirebaseAuth.instance.currentUser!.email!;
                       final username = await Database().getUsernameFromEmail(email);

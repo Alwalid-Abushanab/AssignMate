@@ -1,7 +1,6 @@
 import 'package:assign_mate/group_chat/chat/tile/cubit/group_chat_tile_cubit.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-
 import 'group_chat_view.dart';
 import 'cubit/group_chat_cubit.dart';
 import 'group_info.dart';

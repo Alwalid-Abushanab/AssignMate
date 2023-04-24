@@ -1,8 +1,6 @@
 import 'package:bloc/bloc.dart';
 import 'package:meta/meta.dart';
-
 import '../../../database/database.dart';
-
 part 'group_chat_state.dart';
 
 class GroupChatCubit extends Cubit<GroupChatState> {

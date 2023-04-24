@@ -1,8 +1,6 @@
 import 'package:bloc/bloc.dart';
 import 'package:meta/meta.dart';
-
 import '../../../database/database.dart';
-
 part 'chat_state.dart';
 
 class ChatCubit extends Cubit<ChatState> {

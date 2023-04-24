@@ -22,7 +22,7 @@ class ProfilesListView extends StatelessWidget {
                   centerTitle: true,
                   automaticallyImplyLeading: true,
                 ),
-                body: const CircularProgressIndicator(),
+                body: const Center(child: CircularProgressIndicator()),
             );
           }
           else if(state is ProfileListLoading){
@@ -31,7 +31,7 @@ class ProfilesListView extends StatelessWidget {
                 centerTitle: true,
                 automaticallyImplyLeading: true,
               ),
-              body: const CircularProgressIndicator(),
+              body: const Center(child: CircularProgressIndicator()),
             );
           }
           else if(state is ProfileListLoaded){
@@ -62,7 +62,6 @@ class ProfilesListView extends StatelessWidget {
                               ),
                             ],
                             child: Container(
-                              //margin: const EdgeInsets.symmetric(vertical: 5.0),
                               child: MemberTile(
                                 memberUsername: snapshot.data['members'][i],
                               ),
@@ -88,7 +87,7 @@ class ProfilesListView extends StatelessWidget {
                       centerTitle: true,
                       automaticallyImplyLeading: true,
                     ),
-                    body: const CircularProgressIndicator(),
+                    body: const Center(child: CircularProgressIndicator()),
                   );
                 }
               },
@@ -100,10 +99,9 @@ class ProfilesListView extends StatelessWidget {
                 centerTitle: true,
                 automaticallyImplyLeading: true,
               ),
-              body: Text("Something went wrong"),
+              body: const Text("Something went wrong"),
             );
           }
-          const SizedBox.shrink();
         },
     );
   }

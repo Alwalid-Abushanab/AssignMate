@@ -2,14 +2,12 @@ import 'package:assign_mate/database/database.dart';
 import 'package:bloc/bloc.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:meta/meta.dart';
-import 'package:table_calendar/table_calendar.dart';
-
 part 'calendar_state.dart';
 
 class CalendarCubit extends Cubit<CalendarState> {
   CalendarCubit() : super(CalendarInitial());
 
-  late final event;
+  late final Map<DateTime, List<String>> event;
 
 
   Future getEvents() async{

@@ -21,10 +21,10 @@ class ChatTile extends StatelessWidget {
       builder: (context, state) {
         if(state is ChatTileInitial){
           context.read<ChatTileCubit>().getuser();
-          return const CircularProgressIndicator();
+          return const Center(child: CircularProgressIndicator());
         }
         else if (state is UserLoading){
-          return const CircularProgressIndicator();
+          return const Center(child: CircularProgressIndicator());
         }
         else if (state is UserLoaded){
           final username = state.user;

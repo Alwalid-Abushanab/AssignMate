@@ -1,9 +1,7 @@
 import 'package:bloc/bloc.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:meta/meta.dart';
-
 import '../../../database/database.dart';
-
 part 'group_tiles_state.dart';
 
 class GroupTilesCubit extends Cubit<GroupTilesState> {

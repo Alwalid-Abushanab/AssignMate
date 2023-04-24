@@ -3,7 +3,6 @@ import 'package:assign_mate/group_chat/tiles/cubit/group_tiles_cubit.dart';
 import 'package:assign_mate/group_chat/tiles/group_chat_tile.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-
 import '../bottomNavigation/navigation_bar_view.dart';
 
 class GroupView extends StatelessWidget {
@@ -23,10 +22,10 @@ class GroupView extends StatelessWidget {
           builder: (context, state) {
             if (state is DmInitial){
               context.read<DmCubit>().getMessengers();
-              return const CircularProgressIndicator();
+              return const Center(child: CircularProgressIndicator());
             }
             else if (state is DmLoading){
-              return const CircularProgressIndicator();
+              return const Center(child: CircularProgressIndicator());
             }
             else if (state is DmLoaded){
               final messengers = state.snapshot;
@@ -53,12 +52,12 @@ class GroupView extends StatelessWidget {
                     }
                   }
                   else {
-                    return const CircularProgressIndicator();
+                    return const Center(child: CircularProgressIndicator());
                   }
                 },
               );
             }
-            return Text("something went wrong");
+            return const Text("something went wrong");
           },
       ),
       bottomNavigationBar: NavigationBarView(NavigationBarView.groupsIndex),

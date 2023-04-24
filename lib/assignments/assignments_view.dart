@@ -55,7 +55,7 @@ class AssignmentsView extends StatelessWidget {
                         stream: assignmentsSnapshots[i],
                         builder: (context, AsyncSnapshot snapshot) {
                           if (snapshot.hasData) {
-                            assignments.add(Assignment(DateTime.parse(snapshot.data['dueDate']), snapshot.data['title']));
+                            assignments.add(Assignment(DateTime.parse(snapshot.data['dueDate']), snapshot.data['title'],snapshot.data['assignment_ID']));
                             if(i+1 == assignmentsSnapshots.length){
                               assignments.sort((a, b) => a.dueDate.compareTo(b.dueDate));
                               context.read<AssignmentsCubit>().change();
@@ -96,7 +96,7 @@ class AssignmentsView extends StatelessWidget {
                                 DateFormat('MM/dd HH:mm').format(assignments[index].dueDate),
                               ),
                               onTap:(){
-                                Navigator.pushNamed(context,RouteGenerator.entryPage);
+                                Navigator.pushNamed(context,RouteGenerator.entryPage, arguments: assignments[index].id);
                               },
                             );
                           },
@@ -163,7 +163,7 @@ class AssignmentsView extends StatelessWidget {
                               DateFormat('MM/dd HH:mm').format(assignments[index].dueDate),
                             ),
                             onTap:(){
-                              Navigator.pushNamed(context,RouteGenerator.entryPage);
+                              Navigator.pushNamed(context,RouteGenerator.entryPage, arguments: assignments[index].id);
                             },
                           );
                         },

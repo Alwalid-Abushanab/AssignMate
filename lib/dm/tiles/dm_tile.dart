@@ -1,8 +1,6 @@
-import 'package:assign_mate/database/database.dart';
 import 'package:assign_mate/dm/info.dart';
 import 'package:assign_mate/dm/tiles/cubit/dm_tiles_cubit.dart';
 import 'package:assign_mate/routes/route_generator.dart';
-import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -23,10 +21,10 @@ class DMTile extends StatelessWidget {
         builder: (context, state) {
           if (state is DMTilesInitial){
             context.read<DMTilesCubit>().getInfo(id);
-            return const CircularProgressIndicator();
+            return const Center(child: CircularProgressIndicator());
           }
           else if (state is DMTileLoading){
-            return const CircularProgressIndicator();
+            return const Center(child: CircularProgressIndicator());
           }
           else if (state is DMTileLoaded){
             final messengers = state.snapshot;
@@ -86,12 +84,12 @@ class DMTile extends StatelessWidget {
                   );
                 }
                 else {
-                  return const CircularProgressIndicator();
+                  return const Center(child: CircularProgressIndicator());
                 }
               },
             );
           }
-          return Text("something went wrong");
+          return const Text("something went wrong");
         });
   }
 

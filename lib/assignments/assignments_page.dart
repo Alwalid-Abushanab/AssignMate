@@ -1,5 +1,3 @@
-import 'package:assign_mate/assignments/assignment_entries/new_entry/cubit/new_entry_cubit.dart';
-import 'package:assign_mate/assignments/reminder/cubit/reminder_cubit.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'assignments_view.dart';
