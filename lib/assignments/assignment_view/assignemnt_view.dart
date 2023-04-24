@@ -39,82 +39,80 @@ class AssignmentView extends StatelessWidget {
               builder: (context, AsyncSnapshot snapshot) {
                 if (snapshot.hasData) {
                   return Center(
-                    child: Expanded(
-                      child: Column(
-                        mainAxisAlignment: MainAxisAlignment.center,
-                        crossAxisAlignment: CrossAxisAlignment.center,
-                        children: [
-                          TextField(
-                            decoration: InputDecoration(
-                              hintText: snapshot.data['title'],
-                              hintStyle: const TextStyle(color: Colors.black, fontSize: 30),
-                            ),
-                            textAlign: TextAlign.center,
-                            enabled: false,
+                    child: Column(
+                      mainAxisAlignment: MainAxisAlignment.center,
+                      crossAxisAlignment: CrossAxisAlignment.center,
+                      children: [
+                        TextField(
+                          decoration: InputDecoration(
+                            hintText: snapshot.data['title'],
+                            hintStyle: const TextStyle(color: Colors.black, fontSize: 30),
                           ),
-                          TextField(
-                            decoration: InputDecoration(
-                              hintText: "Due Date: ${DateTime.parse(snapshot.data['dueDate']).year}"
-                                  "-${DateTime.parse(snapshot.data['dueDate']).month}"
-                                  "-${DateTime.parse(snapshot.data['dueDate']).day}",
-                              hintStyle: const TextStyle(color: Colors.black, fontSize: 20),
-                            ),
-                            textAlign: TextAlign.center,
-                            enabled: false,
+                          textAlign: TextAlign.center,
+                          enabled: false,
+                        ),
+                        TextField(
+                          decoration: InputDecoration(
+                            hintText: "Due Date: ${DateTime.parse(snapshot.data['dueDate']).year}"
+                                "-${DateTime.parse(snapshot.data['dueDate']).month}"
+                                "-${DateTime.parse(snapshot.data['dueDate']).day}",
+                            hintStyle: const TextStyle(color: Colors.black, fontSize: 20),
                           ),
-                          const SizedBox(height: 5,),
-                          const Text("Members: ", style: TextStyle(fontSize: 20),),
-                          Expanded(
-                            child: ListView.builder(
-                                itemCount: snapshot.data['members'].length,
-                                itemBuilder: (_,i){
-                                  return ListTile(
-                                    title: Text('${i+1}- ${snapshot.data['members'][i]}',textScaleFactor: 1.3,),
-                                  );
-                                },
-                            ),
-                          ),
-                          const Divider(color: Colors.black,),
-                          const SizedBox(height: 5,),
-                          const Text("Files: ", style: TextStyle(fontSize: 20),),
-                          Expanded(
-                            child: ListView.builder(
-                              itemCount: snapshot.data['files'].length,
+                          textAlign: TextAlign.center,
+                          enabled: false,
+                        ),
+                        const SizedBox(height: 5,),
+                        const Text("Members: ", style: TextStyle(fontSize: 20),),
+                        Expanded(
+                          child: ListView.builder(
+                              itemCount: snapshot.data['members'].length,
                               itemBuilder: (_,i){
                                 return ListTile(
-                                  title: Text(snapshot.data['files'][i].toString().substring(0,snapshot.data['files'][i].toString().indexOf("-"))),
-                                  onTap: () {
-                                    FileDownloader.downloadFile(
-                                      url: snapshot.data['files'][i].toString().substring(snapshot.data['files'][i].toString().indexOf("-")+1),
-                                      name: snapshot.data['files'][i].toString().substring(0,snapshot.data['files'][i].toString().indexOf("-")),
-                                      onDownloadCompleted: (done) {
-                                        showDialog(context: context, builder: (context){
-                                          return const AlertDialog(
-                                            title: Text("Download Has been completed."),
-                                          );
-                                        });
-                                      },
-                                      onDownloadError: (error){
-                                        showDialog(context: context, builder: (context){
-                                          return const AlertDialog(
-                                            title: Text("an Error has occurred"),
-                                          );
-                                        });
-                                      },
-                                    );
-                                  },
+                                  title: Text('${i+1}- ${snapshot.data['members'][i]}',textScaleFactor: 1.3,),
                                 );
                               },
-                            ),
                           ),
-                          ElevatedButton(
-                              onPressed: (){
-                                Navigator.pushNamed(context, RouteGenerator.pdfViewer, arguments: snapshot.data['main pdf']);
-                              },
-                              child: const Text("Open Assignment Outline")
-                          )
-                        ],
-                      ),
+                        ),
+                        const Divider(color: Colors.black,),
+                        const SizedBox(height: 5,),
+                        const Text("Files: ", style: TextStyle(fontSize: 20),),
+                        Expanded(
+                          child: ListView.builder(
+                            itemCount: snapshot.data['files'].length,
+                            itemBuilder: (_,i){
+                              return ListTile(
+                                title: Text(snapshot.data['files'][i].toString().substring(0,snapshot.data['files'][i].toString().indexOf("-"))),
+                                onTap: () {
+                                  FileDownloader.downloadFile(
+                                    url: snapshot.data['files'][i].toString().substring(snapshot.data['files'][i].toString().indexOf("-")+1),
+                                    name: snapshot.data['files'][i].toString().substring(0,snapshot.data['files'][i].toString().indexOf("-")),
+                                    onDownloadCompleted: (done) {
+                                      showDialog(context: context, builder: (context){
+                                        return const AlertDialog(
+                                          title: Text("Download Has been completed."),
+                                        );
+                                      });
+                                    },
+                                    onDownloadError: (error){
+                                      showDialog(context: context, builder: (context){
+                                        return const AlertDialog(
+                                          title: Text("an Error has occurred"),
+                                        );
+                                      });
+                                    },
+                                  );
+                                },
+                              );
+                            },
+                          ),
+                        ),
+                        ElevatedButton(
+                            onPressed: (){
+                              Navigator.pushNamed(context, RouteGenerator.pdfViewer, arguments: snapshot.data['main pdf']);
+                            },
+                            child: const Text("Open Assignment Outline")
+                        )
+                      ],
                     ),
                   );
                 }

@@ -48,6 +48,10 @@ class AssignmentsView extends StatelessWidget {
               else if(state is AssignmentsInfoLoaded) {
                 final List<Stream?> assignmentsSnapshots = state.assignmentsSnapshots;
 
+                if(assignmentsSnapshots.isEmpty){
+                  context.read<AssignmentsCubit>().change();
+                }
+
                 return ListView.builder(
                     itemCount: assignmentsSnapshots.length,
                     itemBuilder: (BuildContext context, int i) {
