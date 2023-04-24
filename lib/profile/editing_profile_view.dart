@@ -127,7 +127,7 @@ class EditingProfileView extends StatelessWidget {
                                       final username = await Database().getUsernameFromEmail(email);
 
                                       Navigator.pop(context);
-                                      Navigator.pop(context);
+                                      Navigator.pushNamed(context, RouteGenerator.profilePage, arguments: username);
                                     },
                                     child: const Text("Save"),
                                   ),
