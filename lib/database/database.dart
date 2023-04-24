@@ -103,7 +103,7 @@ class Database {
     });
   }
 
-  Future createAssignment(String title, String dueDate) async{
+  Future<String> createAssignment(String title, String dueDate) async{
     DocumentReference dr = await assignmentsRef.add({
       "assignment_ID": "",
       "group_ID": "",
@@ -137,6 +137,8 @@ class Database {
 
     await addEvent(currUsername, event);
 
+    return dr.id;
+
 /*
     for(int i = 0; i < members.length; i++){
       await usersRef.doc(members[i]).update({
@@ -144,6 +146,64 @@ class Database {
         "assignmentsGroups": FieldValue.arrayUnion([groupID]),
       });
     }*/
+  }
+
+  addMember(String assignmentID, String name, String groupID) async{
+    await usersRef.doc(name).update({
+      "assignments": FieldValue.arrayUnion([assignmentID]),
+      "assignmentsGroups": FieldValue.arrayUnion([groupID]),
+    });
+
+    await assignmentsRef.doc(assignmentID).update({
+      'members': FieldValue.arrayUnion([name]),
+    });
+
+    await groupChatRef.doc(groupID).update({
+      'members': FieldValue.arrayUnion([name]),
+    });
+  }
+
+  addFiles(String id, File file, String title) async{
+    Reference ref = FirebaseStorage.instance.ref().child('assignmentsFiles/$id/${file.path.split('/').last}');
+    UploadTask uploadTask = ref.putFile(file);
+    TaskSnapshot taskSnapshot = await uploadTask;
+    String downloadUrl = await taskSnapshot.ref.getDownloadURL();
+
+    assignmentsRef.doc(id).update({
+      "files": FieldValue.arrayUnion(['$title-$downloadUrl']),
+    });
+  }
+
+  addMainFile(String id, File file) async{
+    Reference ref = FirebaseStorage.instance.ref().child('assignmentsOutlines/$id/${file.path.split('/').last}');
+    UploadTask uploadTask = ref.putFile(file);
+    TaskSnapshot taskSnapshot = await uploadTask;
+    String downloadUrl = await taskSnapshot.ref.getDownloadURL();
+
+    assignmentsRef.doc(id).update({
+      "main pdf": downloadUrl,
+    });
+  }
+
+  removeMember(String assignmentID, String name, String groupID) async{
+    await assignmentsRef.doc(assignmentID).update({
+      'members': FieldValue.arrayRemove([name])
+    });
+
+    await usersRef.doc(name).update({
+      'assignments': FieldValue.arrayRemove([assignmentID]),
+      'assignmentsGroups': FieldValue.arrayRemove([groupID]),
+    });
+
+    await groupChatRef.doc(groupID).update({
+      'members': FieldValue.arrayRemove([name]),
+    });
+  }
+
+  removeFile(String id, String file) async{
+    await assignmentsRef.doc(id).update({
+      'files': FieldValue.arrayRemove([file])
+    });
   }
 
   Future createGroupChat(String assignmentID, List<String> members, String title) async{

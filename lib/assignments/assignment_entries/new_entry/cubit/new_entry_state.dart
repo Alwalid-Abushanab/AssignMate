@@ -7,7 +7,10 @@ class NewEntryInitial extends NewEntryState {}
 
 class NewEntryCreating extends NewEntryState {}
 
-class NewEntryCreated extends NewEntryState {}
+class NewEntryCreated extends NewEntryState {
+  final String id;
+  NewEntryCreated({required this.id});
+}
 
 class DatePicked extends NewEntryState {
   final String title;

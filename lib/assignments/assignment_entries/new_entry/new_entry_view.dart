@@ -1,4 +1,5 @@
 import 'package:assign_mate/assignments/assignment_entries/new_entry/cubit/new_entry_cubit.dart';
+import 'package:assign_mate/assignments/assignment_entries/new_entry/new_entry_page.dart';
 import 'package:assign_mate/routes/route_generator.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -95,17 +96,11 @@ class NewEntryView extends StatelessWidget {
                 return const CircularProgressIndicator();
               }
               else if(state is NewEntryCreated){
-                return AlertDialog(
-                  content: Text("Assignment Has been created, Please Navigate to it to add members and files"),
-                  actions: [
-                    TextButton(
-                      onPressed: () {
-                        Navigator.pushNamed(context, RouteGenerator.assignmentPage);
-                      },
-                      child: const Text("OK"),)
-                  ],
-                );
-
+                WidgetsBinding.instance.addPostFrameCallback((_) {
+                  Navigator.pushNamed(context, RouteGenerator.editAssignmentPage,
+                      arguments: state.id);
+                });
+                return const NewEntryPage();
               }
               else{
                 return const SizedBox.shrink();

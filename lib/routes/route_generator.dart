@@ -1,4 +1,5 @@
 import 'package:assign_mate/assignments/assignments_page.dart';
+import 'package:assign_mate/assignments/edit_assignemnt/edit_assignment_page.dart';
 import 'package:assign_mate/assignments/reminder/reminder_page.dart';
 import 'package:assign_mate/group_chat/chat/group_chat_page.dart';
 import 'package:assign_mate/group_chat/chat/group_info.dart';
@@ -39,6 +40,7 @@ class RouteGenerator {
   static const String newEntryPage = '/newEntryPage';
   static const String pdfViewer = '/pdfViewer';
   static const String reminderPage = '/reminderPage';
+  static const String editAssignmentPage = '/editAssignmentPage';
 
 
 
@@ -120,6 +122,11 @@ class RouteGenerator {
         List<String> assignments = settings.arguments as List<String>;
         return MaterialPageRoute(
           builder: (_) => ReminderPage(assignments: assignments),
+        );
+      case editAssignmentPage:
+        String assignmentID = settings.arguments as String;
+        return MaterialPageRoute(
+          builder: (_) => EditAssignmentPage(assignmentID: assignmentID),
         );
 
     }

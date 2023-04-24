@@ -9,8 +9,8 @@ class NewEntryCubit extends Cubit<NewEntryState> {
 
   void create(String title, DateTime dueDate) async{
     emit(NewEntryCreating());
-    await Database().createAssignment(title, dueDate.toString(),);
-    emit(NewEntryCreated());
+    final String id = await Database().createAssignment(title, dueDate.toString(),);
+    emit(NewEntryCreated(id: id));
   }
 
   void pickedDate(String title, DateTime dueDate){

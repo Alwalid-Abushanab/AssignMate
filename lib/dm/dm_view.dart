@@ -129,11 +129,12 @@ class DMView extends StatelessWidget {
                           );
                         }
                         else {
+                          Navigator.of(context).pop();
                           showDialog(
                             context: context,
                             builder: (context) {
                               return const AlertDialog(
-                                  title: Text("There Does not exist a mate with this email", textAlign: TextAlign.center,),
+                                  title: Text("There Does not exist a mate with this Username", textAlign: TextAlign.center,),
                               );
                             }
                           );
