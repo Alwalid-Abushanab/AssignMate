@@ -154,6 +154,17 @@ class Database {
     await groupChatRef.doc(groupID).update({
       'members': FieldValue.arrayUnion([name]),
     });
+
+    final snapshot = await assignmentsRef.where('assignment_ID', isEqualTo: assignmentID).get();
+    final title = snapshot.docs.first.get('title');
+    final dueDate = snapshot.docs.first.get('dueDate');
+
+    Map<String, dynamic> event = {
+      "Name" : "$title DueDate",
+      "Date" : DateTime.parse(dueDate),
+    };
+
+    await addEvent(name, event);
   }
 
   addFiles(String id, File file, String title) async{
