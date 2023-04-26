@@ -76,9 +76,6 @@ class SignUpView extends StatelessWidget {
               BlocBuilder<SignupCubit, SignupState>(
                 builder: (context, state) {
 
-                  if(state is SignedUp){
-                    Navigator.pop(context);
-                  }
                   return GestureDetector(
                     onTap: state is SigningUp ? null : () async {
                       BlocProvider.of<SignupCubit>(context).trySigningUp();
@@ -106,6 +103,7 @@ class SignUpView extends StatelessWidget {
                               if(user != null){
                                 await Database(userid: user.uid).addUser(usernameController.text, emailController.text);
                               }
+                              Navigator.pop(context);
                               BlocProvider.of<SignupCubit>(context).successful(true);
                             }
                           }
