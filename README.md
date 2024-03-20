@@ -1,6 +1,6 @@
 # assign_mate
 
-A new Flutter project.
+Wiki: https://github.com/Alwalid-Abushanab/AssignMate/wiki
 
 ## Getting Started
 
